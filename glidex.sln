@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "glidex", "glidex\glidex.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "glidex.sample", "glidex.sample\glidex.sample.csproj", "{939B8958-F2DF-4E9A-9142-EE00696849A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "glidex.forms", "glidex.forms\glidex.forms.csproj", "{DFB39F19-EEC3-4ECB-888D-D84C3B4A9113}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{939B8958-F2DF-4E9A-9142-EE00696849A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{939B8958-F2DF-4E9A-9142-EE00696849A0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{939B8958-F2DF-4E9A-9142-EE00696849A0}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DFB39F19-EEC3-4ECB-888D-D84C3B4A9113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFB39F19-EEC3-4ECB-888D-D84C3B4A9113}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFB39F19-EEC3-4ECB-888D-D84C3B4A9113}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFB39F19-EEC3-4ECB-888D-D84C3B4A9113}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
