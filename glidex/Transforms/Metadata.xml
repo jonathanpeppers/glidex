@@ -1,9 +1,22 @@
 ﻿<metadata>
-  <!--
-  This sample removes the class: android.support.v4.content.AsyncTaskLoader.LoadTask:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='AsyncTaskLoader.LoadTask']" />
-  
-  This sample removes the method: android.support.v4.content.CursorLoader.loadInBackground:
-  <remove-node path="/api/package[@name='android.support.v4.content']/class[@name='CursorLoader']/method[@name='loadInBackground']" />
-  -->
+  <!-- Normalize the namespace for .NET -->
+  <!-- <attr path="//package[@name='com.bumptech.glide']" name="managedName">Android.Glide</attr> -->
+
+  <!--Internal types to remove-->
+  <remove-node path="//implements[@name='com.bumptech.glide.module.AppliesOptions']" />
+  <remove-node path="//implements[@name='com.bumptech.glide.module.RegistersComponents']" />
+  <remove-node path="//implements[@name='com.bumptech.glide.ModelTypes']" />
+  <remove-node path="//implements[@name='com.bumptech.glide.load.engine.EngineJobListener']" />
+  <remove-node path="//implements[@name='com.bumptech.glide.load.engine.bitmap_recycle.ArrayAdapterInterface']" />
+  <remove-node path="//implements[@name='com.bumptech.glide.load.engine.bitmap_recycle.LruPoolStrategy']" />
+  <remove-node path="//implements[@name='com.bumptech.glide.load.engine.bitmap_recycle.Poolable']" />
+  <remove-node path="//implements[@name='com.bumptech.glide.load.data.mediastore.ThumbnailQuery']" />
+  <attr path="//class[@extends='com.bumptech.glide.load.engine.bitmap_recycle.BaseKeyPool']" name="extends"></attr>
+
+  <!--Type fixups for covariance-->
+  <attr path="//parameter[@type='com.bumptech.glide.manager.ActivityFragmentLifecycle']" name="managedType">Com.Bumptech.Glide.Manager.ILifecycle</attr>
+  <attr path="//method[@name='loadResource']" name="managedReturn">Java.Lang.Object</attr>
+  <attr path="//class[contains(@name, 'Fetcher')]/method[@name='close']/parameter" name="managedType">Java.Lang.Object</attr>
+  <attr path="//class[contains(@name, 'Loader')]/method[@name='buildLoadData']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="//class[contains(@name, 'Loader')]/method[@name='handles']/parameter[1]" name="managedType">Java.Lang.Object</attr>
 </metadata>
