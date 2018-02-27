@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using Android.App;
+using Android;
 
 [assembly: AssemblyTitle ("glidex")]
 [assembly: AssemblyDescription ("")]
@@ -14,3 +13,4 @@ using Android.App;
 [assembly: ComVisible (false)]
 [assembly: AssemblyVersion ("4.6.1.0")]
 [assembly: AssemblyFileVersion ("4.6.1.0")]
+[assembly: LinkerSafe]
