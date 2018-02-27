@@ -290,3 +290,4 @@ __pycache__/
 # Project specific
 **/Jars/*.jar
 *.binlog
+Resource.Designer.cs
