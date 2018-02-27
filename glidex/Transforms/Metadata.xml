@@ -1,8 +1,37 @@
 ﻿<metadata>
   <!-- Normalize the namespace for .NET -->
-  <!-- <attr path="//package[@name='com.bumptech.glide']" name="managedName">Android.Glide</attr> -->
+  <attr path="//package[@name='com.bumptech.glide']" name="managedName">Android.Glide</attr>
+  <attr path="//package[@name='com.bumptech.glide.annotation']" name="managedName">Android.Glide.Annotation</attr>
+  <attr path="//package[@name='com.bumptech.glide.disklrucache']" name="managedName">Android.Glide.DiskLruCache</attr>
+  <attr path="//package[@name='com.bumptech.glide.gifdecoder']" name="managedName">Android.Glide.GifDecoder</attr>
+  <attr path="//package[@name='com.bumptech.glide.load']" name="managedName">Android.Glide.Load</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.data']" name="managedName">Android.Glide.Load.Data</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.data.mediastore']" name="managedName">Android.Glide.Load.Data.MediaStore</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.engine']" name="managedName">Android.Glide.Load.Engine</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.engine.bitmap_recycle']" name="managedName">Android.Glide.Load.Engine.BitmapRecycle</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.engine.cache']" name="managedName">Android.Glide.Load.Engine.Cache</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.engine.executor']" name="managedName">Android.Glide.Load.Engine.Executor</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.engine.prefill']" name="managedName">Android.Glide.Load.Engine.Prefill</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.model']" name="managedName">Android.Glide.Load.Model</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.model.stream']" name="managedName">Android.Glide.Load.Model.Stream</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.resource']" name="managedName">Android.Glide.Load.Resource</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.resource.bitmap']" name="managedName">Android.Glide.Load.Resource.Bitmap</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.resource.bytes']" name="managedName">Android.Glide.Load.Resource.Bytes</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.resource.drawable']" name="managedName">Android.Glide.Load.Resource.Drawable</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.resource.file']" name="managedName">Android.Glide.Load.Resource.File</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.resource.gif']" name="managedName">Android.Glide.Load.Resource.Gif</attr>
+  <attr path="//package[@name='com.bumptech.glide.load.resource.transcode']" name="managedName">Android.Glide.Load.Resource.Transcode</attr>
+  <attr path="//package[@name='com.bumptech.glide.manager']" name="managedName">Android.Glide.Manager</attr>
+  <attr path="//package[@name='com.bumptech.glide.module']" name="managedName">Android.Glide.Module</attr>
+  <attr path="//package[@name='com.bumptech.glide.provider']" name="managedName">Android.Glide.Provider</attr>
+  <attr path="//package[@name='com.bumptech.glide.request']" name="managedName">Android.Glide.Request</attr>
+  <attr path="//package[@name='com.bumptech.glide.request.target']" name="managedName">Android.Glide.Request.Target</attr>
+  <attr path="//package[@name='com.bumptech.glide.request.transition']" name="managedName">Android.Glide.Request.Transition</attr>
+  <attr path="//package[@name='com.bumptech.glide.signature']" name="managedName">Android.Glide.Signature</attr>
+  <attr path="//package[@name='com.bumptech.glide.util']" name="managedName">Android.Glide.Util</attr>
+  <attr path="//package[@name='com.bumptech.glide.util.pool']" name="managedName">Android.Glide.Util.Pool</attr>
 
-  <!--Internal types to remove-->
+  <!--Internal, generic, and/or broken interfaces to remove-->
   <remove-node path="//implements[@name='com.bumptech.glide.module.AppliesOptions']" />
   <remove-node path="//implements[@name='com.bumptech.glide.module.RegistersComponents']" />
   <remove-node path="//implements[@name='com.bumptech.glide.ModelTypes']" />
@@ -17,16 +46,14 @@
   <remove-node path="//implements[@name='com.bumptech.glide.load.data.DataRewinder.Factory']" />
   <remove-node path="//implements[@name='com.bumptech.glide.load.data.mediastore.ThumbnailQuery']" />
   <remove-node path="//implements[@name='com.bumptech.glide.load.engine.cache.MemoryCache']" />
-  <remove-node path="//implements[@name='com.bumptech.glide.load.model.ModelLoader']" />  
-  <attr path="//class[@extends='com.bumptech.glide.load.engine.bitmap_recycle.BaseKeyPool']" name="extends"></attr>
-
-  <!--Generic and/or broken interfaces to remove-->
-  <remove-node path="//implements[@name='java.util.concurrent.ExecutorService']" />
+  <remove-node path="//implements[@name='com.bumptech.glide.load.model.ModelLoader']" />
   <remove-node path="//implements[@name='com.bumptech.glide.request.target.Target']" />
+  <remove-node path="//implements[@name='java.util.concurrent.ExecutorService']" />
+  <attr path="//class[@extends='com.bumptech.glide.load.engine.bitmap_recycle.BaseKeyPool']" name="extends"></attr>
 
   <!--Type fixups for covariance-->
   <attr path="//class[contains(@name, 'Fetcher')]/method[@name='close']/parameter[1]" name="type">java.lang.Object</attr>
-  <attr path="//parameter[@type='com.bumptech.glide.manager.ActivityFragmentLifecycle']" name="managedType">Com.Bumptech.Glide.Manager.ILifecycle</attr>
+  <attr path="//parameter[@type='com.bumptech.glide.manager.ActivityFragmentLifecycle']" name="managedType">Android.Glide.Manager.ILifecycle</attr>
   <attr path="//class[contains(@name, 'Target')]/method[@name='getDrawable']/parameter[1]" name="managedType">Java.Lang.Object</attr>
   <attr path="//class[contains(@name, 'Target')]/method[@name='setResource']/parameter[1]" name="managedType">Java.Lang.Object</attr>
   <attr path="//class[contains(@name, 'BitmapTransitionFactory')]/method[@name='getBitmap']/parameter[1]" name="managedType">Java.Lang.Object</attr>

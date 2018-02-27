@@ -1,4 +1,4 @@
-﻿namespace Com.Bumptech.Glide.Load.Data
+﻿namespace Android.Glide.Load.Data
 {
 	partial class AssetFileDescriptorLocalUriFetcher
 	{
