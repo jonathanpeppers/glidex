@@ -11,6 +11,7 @@
   <remove-node path="//implements[@name='com.bumptech.glide.load.engine.bitmap_recycle.LruPoolStrategy']" />
   <remove-node path="//implements[@name='com.bumptech.glide.load.engine.bitmap_recycle.Poolable']" />
   <remove-node path="//implements[@name='com.bumptech.glide.load.data.mediastore.ThumbnailQuery']" />
+  <remove-node path="//implements[@name='java.util.concurrent.ExecutorService']" />
   <attr path="//class[@extends='com.bumptech.glide.load.engine.bitmap_recycle.BaseKeyPool']" name="extends"></attr>
 
   <!--Type fixups for covariance-->
@@ -19,4 +20,8 @@
   <attr path="//class[contains(@name, 'Fetcher')]/method[@name='close']/parameter" name="managedType">Java.Lang.Object</attr>
   <attr path="//class[contains(@name, 'Loader')]/method[@name='buildLoadData']/parameter[1]" name="managedType">Java.Lang.Object</attr>
   <attr path="//class[contains(@name, 'Loader')]/method[@name='handles']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="//class[contains(@name, 'Encoder')]/method[@name='encode']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="//class[contains(@name, 'Target')]/method[@name='getDrawable']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="//class[contains(@name, 'Target')]/method[@name='setResource']/parameter[1]" name="managedType">Java.Lang.Object</attr>
+  <attr path="//class[contains(@name, 'BitmapTransitionFactory')]/method[@name='getBitmap']/parameter[1]" name="managedType">Java.Lang.Object</attr>
 </metadata>
