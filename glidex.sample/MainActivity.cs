@@ -18,7 +18,7 @@ namespace Android.Glide.Sample
 			var image = FindViewById<ImageView> (Resource.Id.testImage);
 			Glide.With (this)
 				.Load ("https://botlist.co/system/BotList/Bot/logos/000/002/271/medium/chuck_norris.jpg")
-				.Apply (RequestOptions.CircleCropTransform ())
+				.Apply (RequestOptions.CircleCropTransform ().Placeholder (Android.Resource.Drawable.IcMenuCamera))
 				.Into (image);
 		}
 	}
