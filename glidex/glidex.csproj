@@ -102,6 +102,7 @@
           using (var client = new System.Net.Http.HttpClient()) {
             var task = client.GetStreamAsync(Url);
             task.Wait();
+            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(File));
             task.Result.CopyTo(System.IO.File.Create(File));
           }
         ]]></Code>
