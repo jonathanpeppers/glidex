@@ -118,7 +118,7 @@ namespace Android.Glide
 		public event EventHandler<VisualElementChangedEventArgs> ElementChanged;
 		public event EventHandler<PropertyChangedEventArgs> ElementPropertyChanged;
 
-		public ImageRenderer () : base (Forms.Context)
+		public ImageRenderer () : base (Xamarin.Forms.Forms.Context)
 		{
 		}
 
