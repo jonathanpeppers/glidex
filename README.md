@@ -44,8 +44,8 @@ If you want to customize how Glide is used in your app, right now you can:
 
 # Comparing Performance
 
-I would like to setup benchmarks, but due to the nature of layout/image loading in XF--it seems difficult to accurately time.
+I would like to setup benchmarks, but due to the nature of layout/image loading in XF--it seems difficult to accurately time. I will probably revisit this.
 
-However, the stock XF performance of images is so bad. Disabling the Glide library in our sample basically breaks the sample entirely.
+However, the stock XF performance of images is very poor due to the amount of images on each page. Disabling the Glide library in the sample app causes "out of memory" errors to happen as images load. You will see empty white squares where this occurs and get console output. To try this, you can remove the references to `glidex` and `glidex.forms` and comment out the `Android.Glide.Forms.Init()` line.
 
-I tested the sample on a Google Pixel 2, and everything is smooth: `ListView` scrolling, loading, etc.
+I tested the sample on a Google Pixel 2, but I could see a more noticeable difference in the Android emulator. I would think slower devices would likewise.
