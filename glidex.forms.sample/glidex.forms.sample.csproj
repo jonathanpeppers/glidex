@@ -82,17 +82,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProguardConfiguration Include="..\..\glidex.sample\proguard.cfg">
-      <Link>proguard.cfg</Link>
-    </ProguardConfiguration>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProguardConfiguration Include="proguard.cfg" />
     <None Include="Properties\AndroidManifest.xml" />
   </ItemGroup>
   <ItemGroup>
