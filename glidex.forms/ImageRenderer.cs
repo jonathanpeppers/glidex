@@ -168,7 +168,7 @@ namespace Android.Glide
 				var token = new CancellationToken ();
 				using (var memoryStream = new MemoryStream ())
 				using (var stream = await streamSource.Stream (token)) {
-					if (token.IsCancellationRequested || source != _element.Source)
+					if (token.IsCancellationRequested || stream == null || source != _element.Source)
 						return;
 					stream.CopyTo (memoryStream);
 					builder = request.Load (memoryStream.ToArray ());

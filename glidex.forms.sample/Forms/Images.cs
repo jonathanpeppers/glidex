@@ -10,7 +10,7 @@ namespace Android.Glide.Sample
 		static readonly Random random = new Random ();
 		static readonly string tempDir = Path.Combine (Path.GetTempPath (), "glide.forms.sample");
 		static readonly string tempPath = Path.Combine (tempDir, "temp.jpg");
-		const int MaxImages = 9;
+		const int MaxImages = 10;
 
 		public static IEnumerable<ImageSource> RandomSources ()
 		{
@@ -50,6 +50,9 @@ namespace Android.Glide.Sample
 				//Stream
 				case 8:
 					return ImageSource.FromStream (() => Android.App.Application.Context.Assets.Open ("assetpatch2.jpg"));
+				//Embedded Resource
+				case 9:
+					return ImageSource.FromResource ("Android.Glide.Sample.embeddedpatch1.jpg", typeof (App));
 				default:
 					throw new NotImplementedException ($"Whoops {x} not implemented!");
 			}
