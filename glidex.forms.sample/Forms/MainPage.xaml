@@ -11,5 +11,7 @@
         <Button Clicked="Edge_Clicked" Text="Edge Cases" />
         <Label Text="Images in a ViewCell in a ListView" />
         <Button Clicked="ViewCell_Clicked" Text="ViewCells" />
+        <Label Text="ImageCells in a ListView" />
+        <Button Clicked="ImageCell_Clicked" Text="ImageCells" />
     </StackLayout>
 </ContentPage>

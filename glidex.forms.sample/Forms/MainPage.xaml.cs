@@ -23,5 +23,10 @@ namespace Android.Glide.Sample
 		{
 			await Navigation.PushAsync (new ViewCellPage ());
 		}
+
+		async void ImageCell_Clicked (object sender, EventArgs e)
+		{
+			await Navigation.PushAsync (new ImageCellPage ());
+		}
 	}
 }

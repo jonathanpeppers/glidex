@@ -1,5 +1,7 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Threading;
+using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -8,11 +10,21 @@ namespace Android.Glide
 {
 	public static class GlideExtensions
 	{
-		public static async void LoadViaGlide(this ImageView imageView, Image element)
+		public static void LoadViaGlide (this ImageView imageView, Image image)
 		{
-			var source = element.Source;
+			LoadViaGlide (imageView, () => image.Source);
+		}
+
+		public static void LoadViaGlide (this ImageView imageView, ImageCell cell)
+		{
+			LoadViaGlide (imageView, () => cell.ImageSource);
+		}
+
+		static async void LoadViaGlide (ImageView imageView, Func<ImageSource> func)
+		{
+			var source = func ();
 			if (source == null) {
-				imageView.SetImageBitmap (null);
+				Clear (imageView);
 				return;
 			}
 
@@ -32,14 +44,25 @@ namespace Android.Glide
 				var token = new CancellationToken ();
 				using (var memoryStream = new MemoryStream ())
 				using (var stream = await streamSource.Stream (token)) {
-					if (token.IsCancellationRequested || stream == null || source != element.Source)
+					if (token.IsCancellationRequested || stream == null || source != func ())
 						return;
 					stream.CopyTo (memoryStream);
 					builder = request.Load (memoryStream.ToArray ());
 				}
 			}
 
-			builder?.Into (imageView);
+			if (builder != null) {
+				imageView.Visibility = ViewStates.Visible;
+				builder.Into (imageView);
+			} else {
+				Clear (imageView);
+			}
+		}
+
+		static void Clear (ImageView imageView)
+		{
+			imageView.Visibility = ViewStates.Gone;
+			imageView.SetImageBitmap (null);
 		}
 	}
 }
