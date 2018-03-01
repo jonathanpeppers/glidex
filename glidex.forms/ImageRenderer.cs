@@ -1,8 +1,6 @@
 ﻿using Android.Views;
 using System;
 using System.ComponentModel;
-using System.IO;
-using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using AImageView = Android.Widget.ImageView;
@@ -12,9 +10,9 @@ using AView = Android.Views.View;
 
 namespace Android.Glide
 {
-	internal sealed class ImageRenderer : AImageView, IVisualElementRenderer
+	public class ImageRenderer : AImageView, IVisualElementRenderer
 	{
-		bool _disposed;
+		protected bool _disposed;
 		Image _element;
 		bool _skipInvalidate;
 		int? _defaultLabelFor;
@@ -132,7 +130,7 @@ namespace Android.Glide
 			ElementPropertyChanged?.Invoke (this, e);
 		}
 
-		void UpdateAspect ()
+		protected virtual void UpdateAspect ()
 		{
 			if (_element == null || _disposed)
 				return;
@@ -141,41 +139,12 @@ namespace Android.Glide
 			SetScaleType (type);
 		}
 
-		async void UpdateSource ()
+		protected virtual void UpdateSource ()
 		{
 			if (_element == null || _disposed)
 				return;
 
-			var source = _element.Source;
-			if (source == null) {
-				SetImageBitmap (null);
-				return;
-			}
-
-			RequestManager request = Glide.With (Context);
-			RequestBuilder builder = null;
-
-			if (source is FileImageSource fileSource) {
-				var drawable = ResourceManager.GetDrawableByName (fileSource.File);
-				if (drawable != 0) {
-					builder = request.Load (drawable);
-				} else {
-					builder = request.Load (fileSource.File);
-				}
-			} else if (source is UriImageSource uriSource) {
-				builder = request.Load (uriSource.Uri.OriginalString);
-			} else if (source is StreamImageSource streamSource) {
-				var token = new CancellationToken ();
-				using (var memoryStream = new MemoryStream ())
-				using (var stream = await streamSource.Stream (token)) {
-					if (token.IsCancellationRequested || stream == null || source != _element.Source)
-						return;
-					stream.CopyTo (memoryStream);
-					builder = request.Load (memoryStream.ToArray ());
-				}
-			}
-
-			builder?.Into (this);
+			this.LoadViaGlide (_element);
 		}
 	}
 }

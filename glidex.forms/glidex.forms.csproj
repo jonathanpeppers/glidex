@@ -139,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Forms.cs" />
+    <Compile Include="GlideExtensions.cs" />
     <Compile Include="ImageExtensions.cs" />
     <Compile Include="ImageRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -10,6 +10,6 @@
         <Label Text="Edge Cases:" />
         <Button Clicked="Edge_Clicked" Text="Edge Cases" />
         <Label Text="Images in a ViewCell in a ListView" />
-        <Button Clicked="ViewCell_Clicked" Text="View Cells" />
+        <Button Clicked="ViewCell_Clicked" Text="ViewCells" />
     </StackLayout>
 </ContentPage>
