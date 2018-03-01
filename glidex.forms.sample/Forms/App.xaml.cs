@@ -8,7 +8,7 @@ namespace Android.Glide.Sample
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+			MainPage = new NavigationPage (new MainPage ());
 		}
 	}
 }

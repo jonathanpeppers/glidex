@@ -2,6 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:glidex.forms.sample"
-             x:Class="Android.Glide.Sample.MainPage">
-    <ScrollView x:Name="_scroll" Padding="0" />
+             x:Class="Android.Glide.Sample.MainPage"
+             Title="GlideX.Forms Sample">
+    <StackLayout Padding="5">
+        <Label Text="400 Images in a Grid: " />
+        <Button Clicked="Grid_Clicked" Text="Grid Example" />
+    </StackLayout>
 </ContentPage>
