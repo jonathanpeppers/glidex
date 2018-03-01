@@ -58,6 +58,9 @@
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="25.4.0.2" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\EdgeCasesPage.xaml.cs">
+      <DependentUpon>EdgeCasesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,11 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\GridPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\EdgeCasesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -10,9 +10,13 @@ namespace Android.Glide.Sample
 			InitializeComponent ();
 		}
 
-		private async void Grid_Clicked (object sender, EventArgs e)
+		async void Grid_Clicked (object sender, EventArgs e)
 		{
 			await Navigation.PushAsync (new GridPage ());
+		}
+		async void Edge_Clicked (object sender, EventArgs e)
+		{
+			await Navigation.PushAsync (new EdgeCasesPage ());
 		}
 	}
 }

@@ -5,7 +5,9 @@
              x:Class="Android.Glide.Sample.MainPage"
              Title="GlideX.Forms Sample">
     <StackLayout Padding="5">
-        <Label Text="400 Images in a Grid: " />
+        <Label Text="400 Images in a Grid:" />
         <Button Clicked="Grid_Clicked" Text="Grid Example" />
+        <Label Text="Edge Cases:" />
+        <Button Clicked="Edge_Clicked" Text="Edge Cases" />
     </StackLayout>
 </ContentPage>
