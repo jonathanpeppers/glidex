@@ -18,5 +18,10 @@ namespace Android.Glide.Sample
 		{
 			await Navigation.PushAsync (new EdgeCasesPage ());
 		}
+
+		async void ViewCell_Clicked (object sender, EventArgs e)
+		{
+			await Navigation.PushAsync (new ViewCellPage ());
+		}
 	}
 }

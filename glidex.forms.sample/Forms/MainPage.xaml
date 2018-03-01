@@ -9,5 +9,7 @@
         <Button Clicked="Grid_Clicked" Text="Grid Example" />
         <Label Text="Edge Cases:" />
         <Button Clicked="Edge_Clicked" Text="Edge Cases" />
+        <Label Text="Images in a ViewCell in a ListView" />
+        <Button Clicked="ViewCell_Clicked" Text="View Cells" />
     </StackLayout>
 </ContentPage>
