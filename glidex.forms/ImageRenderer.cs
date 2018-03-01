@@ -13,7 +13,7 @@ namespace Android.Glide
 	public class ImageRenderer : AImageView, IVisualElementRenderer
 	{
 		protected bool _disposed;
-		Image _element;
+		protected Image _element;
 		bool _skipInvalidate;
 		int? _defaultLabelFor;
 		VisualElementTracker _visualElementTracker;
@@ -51,7 +51,7 @@ namespace Android.Glide
 
 		void OnElementChanged (ElementChangedEventArgs<Image> e)
 		{
-			UpdateSource ();
+			UpdateImage ();
 			UpdateAspect ();
 			this.EnsureId ();
 
@@ -123,7 +123,7 @@ namespace Android.Glide
 		void OnElementPropertyChanged (object sender, PropertyChangedEventArgs e)
 		{
 			if (e.PropertyName == Image.SourceProperty.PropertyName)
-				UpdateSource ();
+				UpdateImage ();
 			else if (e.PropertyName == Image.AspectProperty.PropertyName)
 				UpdateAspect ();
 
@@ -139,7 +139,7 @@ namespace Android.Glide
 			SetScaleType (type);
 		}
 
-		protected virtual void UpdateSource ()
+		protected virtual void UpdateImage ()
 		{
 			if (_element == null || _disposed)
 				return;

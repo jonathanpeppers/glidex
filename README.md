@@ -1,2 +1,39 @@
-# glidex
-GlideX is a Xamarin binding of Glide found at https://github.com/bumptech/glide
+# GlideX
+GlideX is a minimalist Xamarin binding of Glide found at https://github.com/bumptech/glide
+
+We don't want or care to bind the entirety of Glide's public API surface. Our goal here is to just bind the necessary APIs to get something done.
+
+For example take the following C#:
+```csharp
+var image = FindViewById<ImageView> (Resource.Id.testImage);
+Glide.With (this)
+    .Load ("https://botlist.co/system/BotList/Bot/logos/000/002/271/medium/chuck_norris.jpg")
+    .Apply (RequestOptions.CircleCropTransform ().Placeholder (Android.Resource.Drawable.IcMenuCamera))
+    .Into (image);
+```
+
+This code loads an image from a URL dynamically, taking care of all of Glide's cool caching functionality. These are the only APIs we need to make the library useful.
+
+If you have a "classic" Xamarin.Android app that is not Xamarin.Forms, you can use the `glidex` NuGet package if desired.
+
+# GlideX in Xamarin.Forms
+
+The entire goal is to get fast Images working on Android by using Glide. I created two custom renderers:
+- `Android.Glide.ImageRenderer` - ported from the "fast" XF `ImageRenderer`
+- `Android.Glide.ImageCellRenderer` - a standard `CellRenderer` that hooks into Glide for images
+
+But to set this library up in your existing project, merely:
+- Add the `glidex.forms` NuGet package
+- Add this one liner after your app's `Forms.Init` call:
+
+```csharp
+Xamarin.Forms.Forms.Init (this, bundle);
+//This forces the custom renderers to be used
+Android.Glide.Forms.Init ();
+LoadApplication (new App ());
+```
+
+If you want to customize how Glide is used in your app, right now you can:
+- Subclass `Android.Glide.ImageRenderer` or `Android.Glide.ImageCellRenderer`
+- Override `UpdateImage` and use the various `protected` members as needed
+- Use the `glidex` Java binding directly as you prefer
