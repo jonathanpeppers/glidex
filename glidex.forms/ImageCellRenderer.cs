@@ -1,4 +1,5 @@
 ﻿using Android.Content;
+using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using System.ComponentModel;
@@ -9,7 +10,8 @@ using Xamarin.Forms.Platform.Android;
 
 namespace Android.Glide
 {
-	public class ImageCellRenderer : Xamarin.Forms.Platform.Android.TextCellRenderer
+	[Preserve (AllMembers = true)]
+	public class ImageCellRenderer : TextCellRenderer
 	{
 		protected BaseCellView _view;
 
