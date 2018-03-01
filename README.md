@@ -1,7 +1,7 @@
 # GlideX
 GlideX is a minimalist Xamarin binding of Glide found at https://github.com/bumptech/glide
 
-We don't want or care to bind the entirety of Glide's public API surface. Our goal here is to just bind the necessary APIs to get something done.
+We don't want or care to bind the entirety of Glide's public API surface. Our goal here is to just bind the "useful" APIs for Glide.
 
 For example take the following C#:
 ```csharp
@@ -18,9 +18,13 @@ If you have a "classic" Xamarin.Android app that is not Xamarin.Forms, you can u
 
 # GlideX in Xamarin.Forms
 
-The entire goal is to get fast Images working on Android by using Glide. I created two custom renderers:
+The entire goal is to get fast Images for Xamarin.Forms on Android by using Glide.
+
+I created two custom renderers to achieve this:
 - `Android.Glide.ImageRenderer` - ported from the "fast" XF `ImageRenderer`
 - `Android.Glide.ImageCellRenderer` - a standard `CellRenderer` that hooks into Glide for images
+
+This library won't use `IImageSourceHandler` at all, it flat out ignores it. `IImageSourceHandler`'s return value of `Task<Android.Graphics.Bitmap>` makes it impossible to achieve our goal.
 
 But to set this library up in your existing project, merely:
 - Add the `glidex.forms` NuGet package
@@ -37,3 +41,11 @@ If you want to customize how Glide is used in your app, right now you can:
 - Subclass `Android.Glide.ImageRenderer` or `Android.Glide.ImageCellRenderer`
 - Override `UpdateImage` and use the various `protected` members as needed
 - Use the `glidex` Java binding directly as you prefer
+
+# Comparing Performance
+
+I would like to setup benchmarks, but due to the nature of layout/image loading in XF--it seems difficult to accurately time.
+
+However, the stock XF performance of images is so bad. Disabling the Glide library in our sample basically breaks the sample entirely.
+
+I tested the sample on a Google Pixel 2, and everything is smooth: `ListView` scrolling, loading, etc.
