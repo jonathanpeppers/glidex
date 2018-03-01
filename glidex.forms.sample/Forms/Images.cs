@@ -22,7 +22,11 @@ namespace Android.Glide.Sample
 
 		public static ImageSource RandomSource ()
 		{
-			int x = random.Next (MaxImages);
+			return SourceById (random.Next (MaxImages));
+		}
+
+		public static ImageSource SourceById (int x)
+		{
 			switch (x) {
 				//Urls
 				case 0:
