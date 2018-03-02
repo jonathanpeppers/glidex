@@ -15,16 +15,8 @@
         <releaseNotes>Initial release</releaseNotes>
         <tags>Xamarin, Xamarin.Forms, Android, Glide, Bitmap, Images</tags>
         <dependencies>
-            <dependency id="Xamarin.Android.Arch.Core.Common" version="1.0.0" />
-            <dependency id="Xamarin.Android.Arch.Lifecycle.Common" version="1.0.1" />
-            <dependency id="Xamarin.Android.Arch.Lifecycle.Runtime" version="1.0.0" />
-            <dependency id="Xamarin.Android.Support.Annotations" version="26.1.0.1" />
-            <dependency id="Xamarin.Android.Support.Compat" version="26.1.0.1" />
-            <dependency id="Xamarin.Android.Support.Core.UI" version="26.1.0.1" />
-            <dependency id="Xamarin.Android.Support.Core.Utils" version="26.1.0.1" />
-            <dependency id="Xamarin.Android.Support.Fragment" version="26.1.0.1" />
-            <dependency id="Xamarin.Android.Support.Media.Compat" version="26.1.0.1" />
-            <dependency id="Xamarin.Android.Support.v4" version="26.1.0.1" />
+            <dependency id="glidex" version="$version$" />
+            <dependency id="Xamarin.Forms" version="2.5.0.280555" />
         </dependencies>
     </metadata>
 </package>

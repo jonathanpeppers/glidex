@@ -292,3 +292,5 @@ __pycache__/
 *.binlog
 Resource.Designer.cs
 .nugetapikey
+tools
+build
