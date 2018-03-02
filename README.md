@@ -49,8 +49,9 @@ It turns out it is quite difficult to measure performance improvements specifica
 So instead, I found it much easier to measure memory usage. I wrote a quick class that runs a timer and calls the Android APIs to grab memory usage.
 
 Here is a table of peak memory used via the different sample pages I've written:
+
 | Page             | Loaded by     | Peak Memory Usage |
-| ---------------- | ------------- | ----------------- |
+| ---              | ---           | ---:              |
 | GridPage         | Xamarin.Forms |         268387112 |
 | GridPage         | glidex.forms  |          16484584 |
 | ViewCellPage     | Xamarin.Forms |          94412136 |
