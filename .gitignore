@@ -291,3 +291,4 @@ __pycache__/
 **/Jars/*.jar
 *.binlog
 Resource.Designer.cs
+.nugetapikey

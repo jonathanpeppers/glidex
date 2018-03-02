@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+        <id>glidex</id>
+        <version>$version$</version>
+        <authors>Jonathan Peppers</authors>
+        <owners>Jonathan Peppers</owners>
+        <title>glidex</title>
+        <description>Minimalist Xamarin.Android binding for the Glide library</description>
+        <summary>Minimalist Xamarin.Android binding for the Glide library</summary>
+        <licenseUrl>https://raw.githubusercontent.com/jonathanpeppers/glidex/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/jonathanpeppers/glidex/</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <copyright>Jonathan Peppers 2018</copyright>
+        <releaseNotes>Initial release</releaseNotes>
+        <tags>Xamarin, Android, Glide, Bitmap, Image</tags>
+        <dependencies>
+            <dependency id="glidex" version="$version$" />
+            <dependency id="Xamarin.Forms" version="2.5.0.280555" />
+        </dependencies>
+    </metadata>
+</package>
