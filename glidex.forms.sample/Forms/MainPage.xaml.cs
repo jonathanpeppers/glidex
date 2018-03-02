@@ -28,5 +28,10 @@ namespace Android.Glide.Sample
 		{
 			await Navigation.PushAsync (new ImageCellPage ());
 		}
+
+		async void HugeImage_Clicked (object sender, EventArgs e)
+		{
+			await Navigation.PushAsync (new HugeImagePage ());
+		}
 	}
 }

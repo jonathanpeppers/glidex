@@ -2,7 +2,7 @@
 
 namespace Android.Glide.Sample
 {
-	public partial class GridPage : ContentPage
+	public partial class GridPage
 	{
 		public GridPage ()
 		{

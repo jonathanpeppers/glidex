@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sample:ProfilerPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sample="clr-namespace:Android.Glide.Sample"
+    x:Class="Android.Glide.Sample.HugeImagePage"
+    Title="Huge Images">
+    <ScrollView Padding="0">
+        <StackLayout x:Name="_stack">
+            <Label Text="Prepare for OOM and GC pauses" />
+        </StackLayout>
+    </ScrollView>
+</sample:ProfilerPage>

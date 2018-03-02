@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace Android.Glide.Sample
 {
-	public partial class EdgeCasesPage : ContentPage
+	public partial class EdgeCasesPage
 	{
 		public EdgeCasesPage ()
 		{

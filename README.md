@@ -44,8 +44,17 @@ If you want to customize how Glide is used in your app, right now you can:
 
 # Comparing Performance
 
-I would like to setup benchmarks, but due to the nature of layout/image loading in XF--it seems difficult to accurately time. I will probably revisit this.
+It turns out it is quite difficult to measure performance improvements specifically for images in Xamarin.Forms. Due to the asynchronous nature of how images load, I've yet to figure out good points at which to clock times via a `Stopwatch`.
+
+So instead, I found it much easier to measure memory usage. 
+
+Here is a table of peak memory used via the different samples:
+| Page             | Loaded by     | Peak Memory Usage |
+| ---------------- | ------------- | ----------------- |
+| HugeImagePage    | Xamarin.Forms |         267309792 |
+| HugeImagePage    | Glide         |           9943184 |
+
+
+_NOTE: I believe these numbers are in bytes._
 
 However, the stock XF performance of images is very poor due to the amount of images on each page. Disabling the Glide library in the sample app causes "out of memory" errors to happen as images load. You will see empty white squares where this occurs and get console output. To try this, you can remove the references to `glidex` and `glidex.forms` and comment out the `Android.Glide.Forms.Init()` line.
-
-I tested the sample on a Google Pixel 2, but I could see a more noticeable difference in the Android emulator. I would think slower devices would likewise.

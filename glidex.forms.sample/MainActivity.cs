@@ -17,8 +17,8 @@ namespace Android.Glide.Sample
 			base.OnCreate (bundle);
 
 			Xamarin.Forms.Forms.Init (this, bundle);
-			Android.Glide.Forms.Init ();
 			//Force the custom renderers to get loaded
+			Android.Glide.Forms.Init ();
 			LoadApplication (new App ());
 		}
 	}

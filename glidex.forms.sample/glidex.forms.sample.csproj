@@ -76,6 +76,12 @@
     <Compile Include="Forms\ImageCellPage.xaml.cs">
       <DependentUpon>ImageCellPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Profiler\MemoryProfiler.cs" />
+    <Compile Include="Forms\Profiler\ProfilerPage.cs" />
+    <Compile Include="Forms\Profiler\Profiler.cs" />
+    <Compile Include="Forms\HugeImagePage.xaml.cs">
+      <DependentUpon>HugeImagePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,16 +111,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\MainPage.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\glidex.forms\glidex.forms.csproj">
-      <Project>{dfb39f19-eec3-4ecb-888d-d84c3b4a9113}</Project>
-      <Name>glidex.forms</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\glidex\glidex.csproj">
-      <Project>{d8d4d6c6-b845-4114-ade0-ea3777c5e452}</Project>
-      <Name>glidex</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\patch1.jpg" />
@@ -156,6 +152,24 @@
     <EmbeddedResource Include="Forms\ImageCellPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\HugeImagePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\trump.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\glidex.forms\glidex.forms.csproj">
+      <Project>{dfb39f19-eec3-4ecb-888d-d84c3b4a9113}</Project>
+      <Name>glidex.forms</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\glidex\glidex.csproj">
+      <Project>{d8d4d6c6-b845-4114-ade0-ea3777c5e452}</Project>
+      <Name>glidex</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

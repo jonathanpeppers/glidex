@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:glidex.forms.sample"
-             x:Class="Android.Glide.Sample.MainPage"
-             Title="GlideX.Forms Sample">
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:glidex.forms.sample"
+    x:Class="Android.Glide.Sample.MainPage"
+    Title="GlideX.Forms Sample">
     <StackLayout Padding="5">
         <Label Text="400 Images in a Grid:" />
         <Button Clicked="Grid_Clicked" Text="Grid Example" />
@@ -13,5 +14,7 @@
         <Button Clicked="ViewCell_Clicked" Text="ViewCells" />
         <Label Text="ImageCells in a ListView" />
         <Button Clicked="ImageCell_Clicked" Text="ImageCells" />
+        <Label Text="Huge Images (Profiled)" />
+        <Button Clicked="HugeImage_Clicked" Text="Huge Images" />
     </StackLayout>
 </ContentPage>

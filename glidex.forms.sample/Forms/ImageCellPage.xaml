@@ -1,8 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Android.Glide.Sample.ImageCellPage"
-             Title="ImageCells">
+<sample:ProfilerPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sample="clr-namespace:Android.Glide.Sample"
+    x:Class="Android.Glide.Sample.ImageCellPage"
+    Title="ImageCells">
     <ListView ItemsSource="{Binding}" CachingStrategy="RecycleElement">
         <ListView.ItemTemplate>
             <DataTemplate>
@@ -10,4 +12,4 @@
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
-</ContentPage>
+</sample:ProfilerPage>

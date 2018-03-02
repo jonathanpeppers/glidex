@@ -3,7 +3,7 @@ using Xamarin.Forms;
 
 namespace Android.Glide.Sample
 {
-	public partial class ImageCellPage : ContentPage
+	public partial class ImageCellPage
 	{
 		public ImageCellPage ()
 		{
