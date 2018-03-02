@@ -1,5 +1,13 @@
-# GlideX
-GlideX is a minimalist Xamarin binding of Glide found at https://github.com/bumptech/glide
+# glidex and glidex.forms
+glidex is a minimalist Xamarin.Android binding of Glide found at https://github.com/bumptech/glide
+
+glidex.forms is a prototype of what we can do to improve Xamarin.Forms image performance on Android. See my post on the topic [here](http://jonathanpeppers.com/Blog/xamarin-forms-performance-on-android).
+
+Download from NuGet (use the Prerelease checkbox):
+
+| glidex | glidex.forms |
+|---|---|
+| [![NuGet](https://img.shields.io/nuget/dt/glidex.svg)](https://www.nuget.org/packages/glidex) | [![NuGet](https://img.shields.io/nuget/dt/glidex.forms.svg)](https://www.nuget.org/packages/glidex.forms) |
 
 We don't want or care to bind the entirety of Glide's public API surface. Our goal here is to just bind the "useful" APIs for Glide.
 
@@ -16,7 +24,9 @@ This code loads an image from a URL dynamically, taking care of all of Glide's c
 
 If you have a "classic" Xamarin.Android app that is not Xamarin.Forms, you can use the `glidex` NuGet package if desired.
 
-# GlideX in Xamarin.Forms
+_glidex is currently using the 4.6.1 release of Glide from Github_
+
+# glidex.forms for Xamarin.Forms on Android
 
 The entire goal is to get fast Images for Xamarin.Forms on Android by using Glide.
 
@@ -65,4 +75,4 @@ _NOTE: I believe these numbers are in bytes. I restarted the app (release mode) 
 
 Stock XF performance of images is poor due to the amount of `Android.Graphics.Bitmap` instances created on each page. Disabling the Glide library in the sample app causes "out of memory" errors to happen as images load. You will see empty white squares where this occurs and get console output.
 
-To try stock Xamarin.Forms behavior yourself, you can remove the references to `glidex` and `glidex.forms` and comment out the `Android.Glide.Forms.Init()` line.
+To try stock Xamarin.Forms behavior yourself, you can remove the references to `glidex` and `glidex.forms` in the `glide.forms.sample` project and comment out the `Android.Glide.Forms.Init()` line.
