@@ -1,7 +1,7 @@
 # glidex and glidex.forms
-glidex is a minimalist Xamarin.Android binding of Glide found at https://github.com/bumptech/glide
+glidex is a minimalist Xamarin.Android binding of [Glide](https://github.com/bumptech/glide). Google recommends Glide for simplifying the complexity of managing `Android.Graphics.Bitmap` within your apps ([docs here](https://developer.android.com/topic/performance/graphics/manage-memory.html)).
 
-glidex.forms is a prototype of what we can do to improve Xamarin.Forms image performance on Android. See my post on the topic [here](http://jonathanpeppers.com/Blog/xamarin-forms-performance-on-android).
+glidex.forms is a prototype of what we can do to improve Xamarin.Forms image performance on Android by taking a dependency on Glide. See my post on the topic [here](http://jonathanpeppers.com/Blog/xamarin-forms-performance-on-android).
 
 Download from NuGet (use the Prerelease checkbox):
 
@@ -22,13 +22,13 @@ Glide.With (this)
 
 This code loads an image from a URL dynamically, taking care of all of Glide's cool caching functionality. These are the only APIs we need to make the library useful.
 
-If you have a "classic" Xamarin.Android app that is not Xamarin.Forms, you can use the `glidex` NuGet package if desired.
+If you have a "classic" Xamarin.Android app that is not Xamarin.Forms, it could be useful to use the `glidex` NuGet package directly.
 
 _glidex is currently using the 4.6.1 release of Glide from Github_
 
 # glidex.forms for Xamarin.Forms on Android
 
-The entire goal is to get fast Images for Xamarin.Forms on Android by using Glide.
+My goal with this repo is to get fast Images for Xamarin.Forms on Android by using Glide.
 
 I created two custom renderers to achieve this:
 - `Android.Glide.ImageRenderer` - ported from the "fast" XF `ImageRenderer`
