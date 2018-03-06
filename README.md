@@ -62,17 +62,30 @@ Here is a table of peak memory used via the different sample pages I've written:
 
 | Page             | Loaded by     | Peak Memory Usage |
 | ---              | ---           | ---:              |
-| GridPage         | Xamarin.Forms |         268387112 |
-| GridPage         | glidex.forms  |          16484584 |
-| ViewCellPage     | Xamarin.Forms |          94412136 |
-| ViewCellPage     | glidex.forms  |          12698112 |
-| ImageCellPage    | Xamarin.Forms |          24413600 |
-| ImageCellPage    | glidex.forms  |           9977272 |
-| HugeImagePage    | Xamarin.Forms |         267309792 |
-| HugeImagePage    | glidex.forms  |           9943184 |
+| GridPage         | Xamarin.Forms |       268,387,112 |
+| GridPage         | glidex.forms  |        16,484,584 |
+| ViewCellPage     | Xamarin.Forms |        94,412,136 |
+| ViewCellPage     | glidex.forms  |        12,698,112 |
+| ImageCellPage    | Xamarin.Forms |        24,413,600 |
+| ImageCellPage    | glidex.forms  |         9,977,272 |
+| HugeImagePage    | Xamarin.Forms |       267,309,792 |
+| HugeImagePage    | glidex.forms  |         9,943,184 |
 
 _NOTE: I believe these numbers are in bytes. I restarted the app (release mode) before recording the numbers for each page. Pages with ListViews I scrolled up and down a few times._
 
 Stock XF performance of images is poor due to the amount of `Android.Graphics.Bitmap` instances created on each page. Disabling the Glide library in the sample app causes "out of memory" errors to happen as images load. You will see empty white squares where this occurs and get console output.
 
 To try stock Xamarin.Forms behavior yourself, you can remove the references to `glidex` and `glidex.forms` in the `glide.forms.sample` project and comment out the `Android.Glide.Forms.Init()` line.
+
+# Features
+
+In my samples, I tested the following types of images:
+- `ImageSource.FromFile` with a temp file
+- `ImageSource.FromFile` with `AndroidResource`
+- `ImageSource.FromResource` with `EmbeddedResource`
+- `ImageSource.FromUri` with web URLs
+- `ImageSource.FromStream` with `AndroidAsset`
+
+For example, the `GridPage` loads 400 images into a grid with a random combination of all of the above:
+
+![GridPage](docs/GridPage.png)
