@@ -1,3 +1,5 @@
+#load "helpers.cake"
+
 // Input args
 string target = Argument("target", "Default");
 string configuration = Argument("configuration", "Release");
@@ -11,10 +13,10 @@ var dirs = new[]
     Directory("./glidex.forms/bin") + Directory(configuration),
     Directory("./glidex.forms/obj") + Directory(configuration),
 };
+string output = dirs[0];
 string sln = "./glidex.sln";
 string version = "0.1.1";
 string suffix = "-beta";
-string lib = "monoandroid70";
 
 Task("Clean")
     .Does(() =>
@@ -41,64 +43,28 @@ Task("NuGet-Package-GlideX")
     .IsDependentOn("Build")
     .Does(() =>
     {
-        var settings   = new NuGetPackSettings
-        {
-            Verbosity = NuGetVerbosity.Detailed,
-            Version = version + suffix,
-            Files = new [] 
-            {
-                new NuSpecContent { Source = Directory("bin") + Directory(configuration) + File("glidex.dll"), Target = "lib/" + lib },
-            },
-            OutputDirectory = dirs[0]
-        };
-            
-        NuGetPack("./glidex/glidex.nuspec", settings);
+        package(version + suffix, "./glidex/glidex.nuspec", "glidex.dll", output);
     });
 
 Task("NuGet-Push-GlideX")
     .IsDependentOn("NuGet-Package-GlideX")
     .Does(() =>
     {
-        var apiKey = TransformTextFile ("./.nugetapikey").ToString();
-
-        NuGetPush("./build/glidex." + version + suffix + ".nupkg", new NuGetPushSettings 
-        {
-            Verbosity = NuGetVerbosity.Detailed,
-            Source = "nuget.org",
-            ApiKey = apiKey
-        });
+        push("./build/glidex." + version + suffix + ".nupkg");
     });
 
 Task("NuGet-Package-GlideX-Forms")
     .IsDependentOn("Build")
     .Does(() =>
     {
-        var settings   = new NuGetPackSettings
-        {
-            Verbosity = NuGetVerbosity.Detailed,
-            Version = version + suffix,
-            Files = new [] 
-            {
-                new NuSpecContent { Source = Directory("bin") + Directory(configuration) + File("glidex.forms.dll"), Target = "lib/" + lib },
-            },
-            OutputDirectory = dirs[0]
-        };
-            
-        NuGetPack("./glidex.forms/glidex.forms.nuspec", settings);
+        package(version + suffix, "./glidex.forms/glidex.forms.nuspec", "glidex.forms.dll", output);
     });
 
 Task("NuGet-Push-GlideX-Forms")
     .IsDependentOn("NuGet-Package-GlideX-Forms")
     .Does(() =>
     {
-        var apiKey = TransformTextFile ("./.nugetapikey").ToString();
-
-        NuGetPush("./build/glidex.forms." + version + suffix + ".nupkg", new NuGetPushSettings 
-        {
-            Verbosity = NuGetVerbosity.Detailed,
-            Source = "nuget.org",
-            ApiKey = apiKey
-        });
+        push("./build/glidex.forms." + version + suffix + ".nupkg");
     });
 
 Task("NuGet-Package")
