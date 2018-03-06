@@ -16,7 +16,7 @@
         <tags>Xamarin, Xamarin.Forms, Android, Glide, Bitmap, Images</tags>
         <dependencies>
             <dependency id="glidex" version="$version$" />
-            <dependency id="Xamarin.Forms" version="2.5.0.280555" />
+            <dependency id="Xamarin.Forms" version="2.4.0.280" />
         </dependencies>
     </metadata>
 </package>
