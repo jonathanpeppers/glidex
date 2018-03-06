@@ -1,0 +1,7 @@
+version: '{build}'
+image: Visual Studio 2017
+build_script:
+- ps: .\build.ps1
+artifacts:
+- path: build
+  name: glidex
