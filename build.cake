@@ -12,8 +12,9 @@ var dirs = new[]
     Directory("./glidex.forms/obj") + Directory(configuration),
 };
 string sln = "./glidex.sln";
-string version = "0.1.0";
+string version = "0.1.1";
 string suffix = "-beta";
+string lib = "monoandroid70";
 
 Task("Clean")
     .Does(() =>
@@ -46,7 +47,7 @@ Task("NuGet-Package-GlideX")
             Version = version + suffix,
             Files = new [] 
             {
-                new NuSpecContent { Source = Directory("bin") + Directory(configuration) + File("glidex.dll"), Target = "lib/monoandroid80" },
+                new NuSpecContent { Source = Directory("bin") + Directory(configuration) + File("glidex.dll"), Target = "lib/" + lib },
             },
             OutputDirectory = dirs[0]
         };
@@ -78,7 +79,7 @@ Task("NuGet-Package-GlideX-Forms")
             Version = version + suffix,
             Files = new [] 
             {
-                new NuSpecContent { Source = Directory("bin") + Directory(configuration) + File("glidex.forms.dll"), Target = "lib/monoandroid80" },
+                new NuSpecContent { Source = Directory("bin") + Directory(configuration) + File("glidex.forms.dll"), Target = "lib/" + lib },
             },
             OutputDirectory = dirs[0]
         };
