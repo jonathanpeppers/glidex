@@ -1,3 +1,7 @@
+//Tools
+#tool nuget:?package=GitReleaseNotes
+
+//Other files
 #load "helpers.cake"
 
 // Input args
@@ -17,6 +21,8 @@ string output = dirs[0];
 string sln = "./glidex.sln";
 string version = "0.1.1";
 string suffix = "-beta";
+string releaseNotes = "./ReleaseNotes.md";
+string releaseNotesText = "";
 
 Task("Clean")
     .Does(() =>
@@ -74,6 +80,21 @@ Task("NuGet-Package")
 Task("NuGet-Push")
     .IsDependentOn("NuGet-Push-GlideX")
     .IsDependentOn("NuGet-Push-GlideX-Forms");
+
+Task("Release-Notes")
+    .Does(() =>
+    {
+        var releasePath = MakeAbsolute(File(releaseNotes));
+        GitReleaseNotes(releasePath, new GitReleaseNotesSettings
+        {
+            WorkingDirectory = ".",
+            Version = version,
+            AllLabels = true
+        });
+
+        releaseNotesText = System.IO.File.ReadAllText(releasePath.FullPath);
+        Information(releaseNotesText);
+    });
 
 Task("Default")
     .IsDependentOn("NuGet-Package");
