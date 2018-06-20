@@ -109,7 +109,7 @@ namespace Android.Glide
 			}
 
 			if (_visualElementRenderer == null) {
-				_visualElementRenderer = new InternalRenderer ();
+				_visualElementRenderer = new InternalRenderer (Context);
 			}
 
 			OnElementChanged (new ElementChangedEventArgs<Image> (oldElement, _element));
@@ -138,7 +138,7 @@ namespace Android.Glide
 		public event EventHandler<VisualElementChangedEventArgs> ElementChanged;
 		public event EventHandler<PropertyChangedEventArgs> ElementPropertyChanged;
 
-		public ImageRenderer () : base (Xamarin.Forms.Forms.Context)
+		public ImageRenderer (Context context) : base (context)
 		{
 		}
 
@@ -170,6 +170,9 @@ namespace Android.Glide
 		}
 
 		//HACK: VisualElementRenderer<T> is abstract
-		class InternalRenderer : VisualElementRenderer<Xamarin.Forms.View> { }
+		class InternalRenderer : VisualElementRenderer<Xamarin.Forms.View>
+		{
+			public InternalRenderer (Context context) : base (context) { }
+		}
 	}
 }

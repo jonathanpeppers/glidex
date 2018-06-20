@@ -52,12 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="2.4.0.280" />
-    <PackageReference Include="Xamarin.Android.Support.Design" Version="23.3.0" />
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="23.3.0" />
-    <PackageReference Include="Xamarin.Android.Support.v4" Version="23.3.0" />
-    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="23.3.0" />
-    <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="23.3.0" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.0.77107" />
+    <PackageReference Include="Xamarin.Android.Support.Design" Version="25.4.0.2" />
+    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="25.4.0.2" />
+    <PackageReference Include="Xamarin.Android.Support.v4" Version="25.4.0.2" />
+    <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="25.4.0.2" />
+    <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="25.4.0.2" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Forms\EdgeCasesPage.xaml.cs">
