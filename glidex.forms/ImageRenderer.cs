@@ -1,4 +1,5 @@
-﻿using Android.Views;
+﻿using Android.Content;
+using Android.Views;
 using System;
 using System.ComponentModel;
 using Xamarin.Forms;
@@ -17,6 +18,7 @@ namespace Android.Glide
 		bool _skipInvalidate;
 		int? _defaultLabelFor;
 		VisualElementTracker _visualElementTracker;
+		InternalRenderer _visualElementRenderer;
 
 		protected override void Dispose (bool disposing)
 		{
@@ -29,6 +31,11 @@ namespace Android.Glide
 				if (_visualElementTracker != null) {
 					_visualElementTracker.Dispose ();
 					_visualElementTracker = null;
+				}
+
+				if (_visualElementRenderer != null) {
+					_visualElementRenderer.Dispose ();
+					_visualElementRenderer = null;
 				}
 
 				if (_element != null) {
@@ -57,6 +64,16 @@ namespace Android.Glide
 
 			ElementChanged?.Invoke (this, new VisualElementChangedEventArgs (e.OldElement, e.NewElement));
 		}
+
+		public override bool OnTouchEvent (MotionEvent e)
+		{
+			if (_visualElementRenderer.OnTouchEvent (e) || base.OnTouchEvent (e)) {
+				return true;
+			}
+
+			return false;
+		}
+
 
 		Size MinimumSize ()
 		{
@@ -87,8 +104,13 @@ namespace Android.Glide
 
 			element.PropertyChanged += OnElementPropertyChanged;
 
-			if (_visualElementTracker == null)
+			if (_visualElementTracker == null) {
 				_visualElementTracker = new VisualElementTracker (this);
+			}
+
+			if (_visualElementRenderer == null) {
+				_visualElementRenderer = new InternalRenderer ();
+			}
 
 			OnElementChanged (new ElementChangedEventArgs<Image> (oldElement, _element));
 		}
@@ -146,5 +168,8 @@ namespace Android.Glide
 
 			this.LoadViaGlide (_element);
 		}
+
+		//HACK: VisualElementRenderer<T> is abstract
+		class InternalRenderer : VisualElementRenderer<Xamarin.Forms.View> { }
 	}
 }
