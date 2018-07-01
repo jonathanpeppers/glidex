@@ -50,11 +50,8 @@
     <TransformFile Include="Transforms\EnumMethods.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedJar Include="Jars\glide-full-4.6.1.jar">
-      <Url>https://github.com/bumptech/glide/releases/download/v4.6.1/glide-full-4.6.1.jar</Url>
-    </EmbeddedJar>
-    <EmbeddedJar Include="Jars\annotation-4.6.1.jar">
-      <Url>https://github.com/bumptech/glide/releases/download/v4.6.1/annotation-4.6.1.jar</Url>
+    <EmbeddedJar Include="Jars\glide-full-4.7.0.jar">
+      <Url>https://github.com/bumptech/glide/releases/download/v4.7.0/glide-full-4.7.0.jar</Url>
     </EmbeddedJar>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
