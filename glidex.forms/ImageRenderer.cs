@@ -1,4 +1,6 @@
-﻿using Android.Views;
+﻿using Android.Content;
+using Android.Runtime;
+using Android.Views;
 using System;
 using System.ComponentModel;
 using Xamarin.Forms;
@@ -17,6 +19,10 @@ namespace Android.Glide
 		bool _skipInvalidate;
 		int? _defaultLabelFor;
 		VisualElementTracker _visualElementTracker;
+
+		public ImageRenderer(Context context) : base (context) { }
+
+		public ImageRenderer(IntPtr javaReference, JniHandleOwnership transfer): base (javaReference, transfer) { }
 
 		protected override void Dispose (bool disposing)
 		{
