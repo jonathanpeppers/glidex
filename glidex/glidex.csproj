@@ -67,9 +67,11 @@
           Log.LogMessage("Downloading {0} to {1}...", Url, File);
           using (var client = new System.Net.Http.HttpClient()) {
             var task = client.GetStreamAsync(Url);
-            task.Wait();
             System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(File));
-            task.Result.CopyTo(System.IO.File.Create(File));
+            using (var r = task.Result)
+            using (var f = System.IO.File.Create(File)) {
+              task.Result.CopyTo(f);
+            }
           }
         ]]></Code>
     </Task>
