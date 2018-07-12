@@ -55,6 +55,7 @@
     </EmbeddedJar>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Bindings.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.Common.targets" />
   <UsingTask TaskName="DownloadFile" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v12.0.dll">
     <ParameterGroup>
       <Url ParameterType="System.String" Required="true" />
@@ -74,7 +75,23 @@
         ]]></Code>
     </Task>
   </UsingTask>
-  <Target Name="BeforeBuild" Inputs="$(MSBuildThisFile)" Outputs="@(EmbeddedJar)">
-    <DownloadFile Url="%(EmbeddedJar.Url)" File="%(EmbeddedJar.FullPath)" />
+  <PropertyGroup>
+    <_Intermediate>$(IntermediateOutputPath)glidex\</_Intermediate>
+    <_ProguardStamp>$(_Intermediate)glidex.pro.stamp</_ProguardStamp>
+  </PropertyGroup>
+  <Target Name="Download" Inputs="$(MSBuildThisFile)" Outputs="@(EmbeddedJar->'$(_Intermediate)%(Identity)')">
+    <DownloadFile Url="%(EmbeddedJar.Url)" File="@(EmbeddedJar->'$(_Intermediate)%(Identity)')" />
+    <DownloadFile Url="https://dl.google.com/dl/android/maven2/com/android/support/support-v4/25.4.0/support-v4-25.4.0.aar" File="$(_Intermediate)support-v4.aar" />
+    <ItemGroup>
+      <FileWrites Include="@(EmbeddedJar->'$(_Intermediate)%(Identity)')" />
+    </ItemGroup>
   </Target>
+  <Target Name="Proguard" Inputs="@(EmbeddedJar->'$(_Intermediate)%(Identity)')" Outputs="$(_ProguardStamp)" DependsOnTargets="Download;AndroidPrepareForBuild">
+    <Exec Command="&quot;$(JavaToolPath)\java&quot; -jar &quot;$(ProguardJarPath)&quot; -injars &quot;@(EmbeddedJar->'$(_Intermediate)%(Identity)')&quot; -outjars &quot;%(EmbeddedJar.Identity)&quot; -libraryjars &quot;'$(JavaPlatformJarPath)';'$(_Intermediate)support-v4.aar'&quot; -keep class com.bumptech.glide.** { public *; }" />
+    <Touch Files="$(_ProguardStamp)" AlwaysCreate="True" />
+    <ItemGroup>
+      <FileWrites Include="$(_ProguardStamp)" />
+    </ItemGroup>
+  </Target>
+  <Target Name="BeforeBuild" DependsOnTargets="Proguard" />
 </Project>
