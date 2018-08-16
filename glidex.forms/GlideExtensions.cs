@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
+using Android.App;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
@@ -10,6 +12,8 @@ namespace Android.Glide
 {
 	public static class GlideExtensions
 	{
+		const string Tag = "glidex";
+
 		public static void LoadViaGlide (this ImageView imageView, Image image)
 		{
 			LoadViaGlide (imageView, () => image.Source);
@@ -22,40 +26,61 @@ namespace Android.Glide
 
 		static async void LoadViaGlide (ImageView imageView, Func<ImageSource> func)
 		{
-			var source = func ();
-			if (source == null) {
-				Clear (imageView);
-				return;
-			}
-
-			RequestManager request = Glide.With (imageView.Context);
-			RequestBuilder builder = null;
-
-			if (source is FileImageSource fileSource) {
-				var drawable = ResourceManager.GetDrawableByName (fileSource.File);
-				if (drawable != 0) {
-					builder = request.Load (drawable);
-				} else {
-					builder = request.Load (fileSource.File);
+			try {
+				var source = func ();
+				if (source == null) {
+					Clear (imageView);
+					return;
 				}
-			} else if (source is UriImageSource uriSource) {
-				builder = request.Load (uriSource.Uri.OriginalString);
-			} else if (source is StreamImageSource streamSource) {
-				var token = new CancellationToken ();
-				using (var memoryStream = new MemoryStream ())
-				using (var stream = await streamSource.Stream (token)) {
-					if (token.IsCancellationRequested || stream == null || source != func ())
+
+				//NOTE: see https://github.com/bumptech/glide/issues/1484#issuecomment-365625087
+				var activity = imageView.Context as Activity;
+				if (activity != null) {
+					if (activity.IsFinishing) {
+						Log.Warn (Tag, "Activity of type `{0}` is finishing, aborting image load for `{1}`.", activity.GetType ().FullName, source);
 						return;
-					stream.CopyTo (memoryStream);
-					builder = request.Load (memoryStream.ToArray ());
+					}
+					if (activity.IsDestroyed) {
+						Log.Warn (Tag, "Activity of type `{0}` is destroyed, aborting image load for `{1}`.", activity.GetType ().FullName, source);
+						return;
+					}
+				} else {
+					Log.Warn (Tag, "Context `{0}` is not an Android.App.Activity, aborting image load for `{1}`.", imageView.Context, source);
+					return;
 				}
-			}
 
-			if (builder != null) {
-				imageView.Visibility = ViewStates.Visible;
-				builder.Into (imageView);
-			} else {
-				Clear (imageView);
+				RequestManager request = Glide.With (imageView.Context);
+				RequestBuilder builder = null;
+
+				if (source is FileImageSource fileSource) {
+					var drawable = ResourceManager.GetDrawableByName (fileSource.File);
+					if (drawable != 0) {
+						builder = request.Load (drawable);
+					} else {
+						builder = request.Load (fileSource.File);
+					}
+				} else if (source is UriImageSource uriSource) {
+					builder = request.Load (uriSource.Uri.OriginalString);
+				} else if (source is StreamImageSource streamSource) {
+					var token = new CancellationToken ();
+					using (var memoryStream = new MemoryStream ())
+					using (var stream = await streamSource.Stream (token)) {
+						if (token.IsCancellationRequested || stream == null || source != func ())
+							return;
+						stream.CopyTo (memoryStream);
+						builder = request.Load (memoryStream.ToArray ());
+					}
+				}
+
+				if (builder != null) {
+					imageView.Visibility = ViewStates.Visible;
+					builder.Into (imageView);
+				} else {
+					Clear (imageView);
+				}
+			} catch (Exception exc) {
+				//Since developers can't catch this themselves, I think we should log it and silently fail
+				Log.Warn (Tag, "Unexpected exception in glidex: {0}", exc);
 			}
 		}
 
