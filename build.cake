@@ -12,6 +12,10 @@ var dirs = new[]
     Directory("./glidex/obj") + Directory(configuration),
     Directory("./glidex.forms/bin") + Directory(configuration),
     Directory("./glidex.forms/obj") + Directory(configuration),
+    Directory("./glidex.sample/bin") + Directory(configuration),
+    Directory("./glidex.sample/obj") + Directory(configuration),
+    Directory("./glidex.forms.sample/bin") + Directory(configuration),
+    Directory("./glidex.forms.sample/obj") + Directory(configuration),
 };
 string output = dirs[0];
 string sln = "./glidex.sln";
