@@ -1,5 +1,6 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using Android.Runtime;
 using Android.Widget;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -10,6 +11,7 @@ using Xamarin.Forms.Platform.Android;
 
 namespace Android.Glide
 {
+	[Preserve (AllMembers = true)]
 	public class ImageViewHandler : IImageViewHandler
 	{
 		public Task LoadImageAsync (ImageSource source, ImageView imageView, CancellationToken token = default (CancellationToken))
