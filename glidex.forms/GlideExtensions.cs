@@ -14,20 +14,9 @@ namespace Android.Glide
 	{
 		const string Tag = "glidex";
 
-		public static void LoadViaGlide (this ImageView imageView, Image image)
-		{
-			LoadViaGlide (imageView, () => image.Source);
-		}
-
-		public static void LoadViaGlide (this ImageView imageView, ImageCell cell)
-		{
-			LoadViaGlide (imageView, () => cell.ImageSource);
-		}
-
-		static async void LoadViaGlide (ImageView imageView, Func<ImageSource> func)
+		public static async void LoadViaGlide (this ImageView imageView, ImageSource source, CancellationToken token)
 		{
 			try {
-				var source = func ();
 				if (source == null) {
 					Clear (imageView);
 					return;
@@ -62,10 +51,9 @@ namespace Android.Glide
 				} else if (source is UriImageSource uriSource) {
 					builder = request.Load (uriSource.Uri.OriginalString);
 				} else if (source is StreamImageSource streamSource) {
-					var token = new CancellationToken ();
 					using (var memoryStream = new MemoryStream ())
 					using (var stream = await streamSource.Stream (token)) {
-						if (token.IsCancellationRequested || stream == null || source != func ())
+						if (token.IsCancellationRequested || stream == null)
 							return;
 						stream.CopyTo (memoryStream);
 						builder = request.Load (memoryStream.ToArray ());
