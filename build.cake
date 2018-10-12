@@ -43,6 +43,13 @@ Task("Build")
         MSBuild(sln, settings => settings.SetConfiguration(configuration));
     });
 
+Task("Install")
+    .IsDependentOn("Build")
+    .Does(() =>
+    {
+        MSBuild("./glidex.forms.sample/glidex.forms.sample.csproj", settings => settings.SetConfiguration(configuration).WithTarget("Install").WithTarget("_Run"));
+    });
+
 Task("NuGet-Package-GlideX")
     .IsDependentOn("Build")
     .Does(() =>
