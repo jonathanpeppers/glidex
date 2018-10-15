@@ -1,7 +1,6 @@
 ﻿<metadata>
   <!-- Normalize the namespace for .NET -->
   <attr path="//package[@name='com.bumptech.glide']" name="managedName">Android.Glide</attr>
-  <attr path="//package[@name='com.bumptech.glide.annotation']" name="managedName">Android.Glide.Annotation</attr>
   <attr path="//package[@name='com.bumptech.glide.request']" name="managedName">Android.Glide.Request</attr>
   <attr path="//package[@name='com.bumptech.glide.request.target']" name="managedName">Android.Glide.Request.Target</attr>
 
