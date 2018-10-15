@@ -12,11 +12,15 @@ var dirs = new[]
     Directory("./glidex/obj") + Directory(configuration),
     Directory("./glidex.forms/bin") + Directory(configuration),
     Directory("./glidex.forms/obj") + Directory(configuration),
+    Directory("./glidex.sample/bin") + Directory(configuration),
+    Directory("./glidex.sample/obj") + Directory(configuration),
+    Directory("./glidex.forms.sample/bin") + Directory(configuration),
+    Directory("./glidex.forms.sample/obj") + Directory(configuration),
 };
 string output = dirs[0];
 string sln = "./glidex.sln";
-string version = "1.0.2";
-string suffix = "";
+string version = "1.0.3";
+string suffix = "-pre";
 
 Task("Clean")
     .Does(() =>
@@ -37,6 +41,13 @@ Task("Build")
     .Does(() =>
     {
         MSBuild(sln, settings => settings.SetConfiguration(configuration));
+    });
+
+Task("Install")
+    .IsDependentOn("Build")
+    .Does(() =>
+    {
+        MSBuild("./glidex.forms.sample/glidex.forms.sample.csproj", settings => settings.SetConfiguration(configuration).WithTarget("Install").WithTarget("_Run"));
     });
 
 Task("NuGet-Package-GlideX")
