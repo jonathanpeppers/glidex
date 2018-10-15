@@ -77,7 +77,7 @@
         ]]></Code>
     </Task>
   </UsingTask>
-  <Target Name="BeforeBuild" Inputs="$(MSBuildThisFile)" Outputs="@(EmbeddedJar)">
+  <Target Name="BeforeBuild" BeforeTargets="ExportJarToXml" Inputs="$(MSBuildThisFile)" Outputs="@(EmbeddedJar)">
     <DownloadFile Url="%(EmbeddedJar.Url)" File="%(EmbeddedJar.FullPath)" />
   </Target>
 </Project>
