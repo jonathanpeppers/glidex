@@ -8,7 +8,7 @@ void package(string version, string nuspec, string file, string output)
         Version = version,
         Files = new[]
         {
-            new NuSpecContent { Source = Directory("bin") + Directory(configuration) + File(file), Target = "lib/monoandroid70" },
+            new NuSpecContent { Source = Directory("bin") + Directory(configuration) + File(file), Target = "lib/monoandroid81" },
         },
         OutputDirectory = output
     };
