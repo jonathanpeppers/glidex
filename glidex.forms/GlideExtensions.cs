@@ -17,7 +17,7 @@ namespace Android.Glide
 		public static async void LoadViaGlide (this ImageView imageView, ImageSource source, CancellationToken token)
 		{
 			try {
-				if (source == null) {
+				if (source is null) {
 					Clear (imageView);
 					return;
 				}
