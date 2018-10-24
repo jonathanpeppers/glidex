@@ -23,8 +23,7 @@ namespace Android.Glide
 				}
 
 				//NOTE: see https://github.com/bumptech/glide/issues/1484#issuecomment-365625087
-				var activity = imageView.Context as Activity;
-				if (activity != null) {
+				if (imageView.Context is Activity activity) {
 					if (activity.IsFinishing) {
 						Log.Warn (Tag, "Activity of type `{0}` is finishing, aborting image load for `{1}`.", activity.GetType ().FullName, source);
 						return;
