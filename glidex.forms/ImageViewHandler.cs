@@ -14,10 +14,15 @@ namespace Android.Glide
 	[Preserve (AllMembers = true)]
 	public class ImageViewHandler : IImageViewHandler
 	{
-		public Task LoadImageAsync (ImageSource source, ImageView imageView, CancellationToken token = default (CancellationToken))
+		public ImageViewHandler ()
 		{
-			imageView.LoadViaGlide (source, token);
-			return Task.FromResult (true);
+			Forms.Debug ("IImageViewHandler of type `{0}`, instance created.", GetType ());
+		}
+
+		public async Task LoadImageAsync (ImageSource source, ImageView imageView, CancellationToken token = default (CancellationToken))
+		{
+			Forms.Debug ("IImageViewHandler of type `{0}`, `{1}` called.", GetType (), nameof (LoadImageAsync));
+			await imageView.LoadViaGlide (source, token);
 		}
 	}
 }

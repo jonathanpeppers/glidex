@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using Android.App;
-using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Xamarin.Forms;
@@ -12,49 +12,54 @@ namespace Android.Glide
 {
 	public static class GlideExtensions
 	{
-		const string Tag = "glidex";
-
-		public static async void LoadViaGlide (this ImageView imageView, ImageSource source, CancellationToken token)
+		public static async Task LoadViaGlide (this ImageView imageView, ImageSource source, CancellationToken token)
 		{
 			try {
-				if (source is null) {
-					Clear (imageView);
-					return;
-				}
-
 				//NOTE: see https://github.com/bumptech/glide/issues/1484#issuecomment-365625087
 				if (imageView.Context is Activity activity) {
 					if (activity.IsFinishing) {
-						Log.Warn (Tag, "Activity of type `{0}` is finishing, aborting image load for `{1}`.", activity.GetType ().FullName, source);
+						Forms.Warn ("Activity of type `{0}` is finishing, aborting image load for `{1}`.", activity.GetType ().FullName, source);
 						return;
 					}
 					if (activity.IsDestroyed) {
-						Log.Warn (Tag, "Activity of type `{0}` is destroyed, aborting image load for `{1}`.", activity.GetType ().FullName, source);
+						Forms.Warn ("Activity of type `{0}` is destroyed, aborting image load for `{1}`.", activity.GetType ().FullName, source);
 						return;
 					}
 				} else {
-					Log.Warn (Tag, "Context `{0}` is not an Android.App.Activity, aborting image load for `{1}`.", imageView.Context, source);
+					Forms.Warn ("Context `{0}` is not an Android.App.Activity, aborting image load for `{1}`.", imageView.Context, source);
 					return;
 				}
 
 				RequestManager request = Glide.With (imageView.Context);
 				RequestBuilder builder = null;
 
+				if (source is null) {
+					Forms.Debug ("`{0}` is null, clearing image", nameof (ImageSource));
+					Clear (request, imageView);
+					return;
+				}
+
 				switch (source) {
 					case FileImageSource fileSource:
-						var drawable = ResourceManager.GetDrawableByName (fileSource.File);
+						var fileName = fileSource.File;
+						var drawable = ResourceManager.GetDrawableByName (fileName);
 						if (drawable != 0) {
+							Forms.Debug ("Loading `{0}` as an Android resource", fileName);
 							builder = request.Load (drawable);
 						} else {
-							builder = request.Load (fileSource.File);
+							Forms.Debug ("Loading `{0}` from disk", fileName);
+							builder = request.Load (fileName);
 						}
 						break;
 
 					case UriImageSource uriSource:
-						builder = request.Load (uriSource.Uri.OriginalString);
+						var url = uriSource.Uri.OriginalString;
+						Forms.Debug ("Loading `{0}` as a web URL", url);
+						builder = request.Load (url);
 						break;
 
 					case StreamImageSource streamSource:
+						Forms.Debug ("Loading `{0}` as a byte[]. Consider using `AndroidResource` instead, as it would be more performant", nameof (StreamImageSource));
 						using (var memoryStream = new MemoryStream ())
 						using (var stream = await streamSource.Stream (token)) {
 							if (token.IsCancellationRequested || stream == null)
@@ -66,21 +71,25 @@ namespace Android.Glide
 				}
 
 				if (builder is null) {
-					Clear (imageView);
+					Clear (request, imageView);
 				} else {
 					imageView.Visibility = ViewStates.Visible;
 					builder.Into (imageView);
 				}
 			} catch (Exception exc) {
 				//Since developers can't catch this themselves, I think we should log it and silently fail
-				Log.Warn (Tag, "Unexpected exception in glidex: {0}", exc);
+				Forms.Warn ("Unexpected exception in glidex: {0}", exc);
 			}
 		}
 
-		static void Clear (ImageView imageView)
+		static void Clear (RequestManager request, ImageView imageView)
 		{
 			imageView.Visibility = ViewStates.Gone;
 			imageView.SetImageBitmap (null);
+
+			//We need to call Clear for Glide to know this image is now unused
+			//https://bumptech.github.io/glide/doc/targets.html
+			request.Clear (imageView);
 		}
 	}
 }
