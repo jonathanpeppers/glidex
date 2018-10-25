@@ -24,17 +24,13 @@ This code loads an image from a URL dynamically, taking care of all of Glide's c
 
 If you have a "classic" Xamarin.Android app that is not Xamarin.Forms, it could be useful to use the `glidex` NuGet package directly.
 
-_glidex is currently using the 4.6.1 release of Glide from Github_
+_glidex is currently using the 4.7.0 release of Glide from Github_
 
 # glidex.forms for Xamarin.Forms on Android
 
 My goal with this repo is to get fast Images for Xamarin.Forms on Android by using Glide.
 
-I created two custom renderers to achieve this:
-- `Android.Glide.ImageRenderer` - ported from the "fast" XF `ImageRenderer`
-- `Android.Glide.ImageCellRenderer` - a standard `CellRenderer` that hooks into Glide for images
-
-This library won't use `IImageSourceHandler` at all, it flat out ignores it. `IImageSourceHandler`'s return value of `Task<Android.Graphics.Bitmap>` doesn't line up with Glide's APIs which uses `ImageView` directly.
+The new `IImageViewHandler` API in Xamarin.Forms 3.3.x, allows glidex.forms to operate without using *any* custom renderers!
 
 But to set this library up in your existing project, merely:
 - Add the `glidex.forms` NuGet package
@@ -47,10 +43,15 @@ Android.Glide.Forms.Init ();
 LoadApplication (new App ());
 ```
 
-If you want to customize how Glide is used in your app, right now you can:
-- Subclass `Android.Glide.ImageRenderer` or `Android.Glide.ImageCellRenderer`
-- Override `UpdateImage` and use the various `protected` members as needed
-- Use the `glidex` Java binding directly as you prefer
+## How do I know my app is using Glide?
+
+On first use, you may want to enable debug logging:
+```csharp
+Android.Glide.Forms.Init (debug: true);
+```
+glidex.forms will print out log messages in your device log as to what is happening under the hood.
+
+If you want to customize how Glide is used in your app, currently your option is to implement your own `IImageViewHandler`. See the [GlideExtensions](https://github.com/jonathanpeppers/glidex/blob/master/glidex.forms/GlideExtensions.cs) class for details.
 
 # Comparing Performance
 
