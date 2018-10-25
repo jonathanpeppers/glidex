@@ -17,14 +17,13 @@ namespace Android.Glide
 		public static async void LoadViaGlide (this ImageView imageView, ImageSource source, CancellationToken token)
 		{
 			try {
-				if (source == null) {
+				if (source is null) {
 					Clear (imageView);
 					return;
 				}
 
 				//NOTE: see https://github.com/bumptech/glide/issues/1484#issuecomment-365625087
-				var activity = imageView.Context as Activity;
-				if (activity != null) {
+				if (imageView.Context is Activity activity) {
 					if (activity.IsFinishing) {
 						Log.Warn (Tag, "Activity of type `{0}` is finishing, aborting image load for `{1}`.", activity.GetType ().FullName, source);
 						return;
@@ -41,30 +40,36 @@ namespace Android.Glide
 				RequestManager request = Glide.With (imageView.Context);
 				RequestBuilder builder = null;
 
-				if (source is FileImageSource fileSource) {
-					var drawable = ResourceManager.GetDrawableByName (fileSource.File);
-					if (drawable != 0) {
-						builder = request.Load (drawable);
-					} else {
-						builder = request.Load (fileSource.File);
-					}
-				} else if (source is UriImageSource uriSource) {
-					builder = request.Load (uriSource.Uri.OriginalString);
-				} else if (source is StreamImageSource streamSource) {
-					using (var memoryStream = new MemoryStream ())
-					using (var stream = await streamSource.Stream (token)) {
-						if (token.IsCancellationRequested || stream == null)
-							return;
-						stream.CopyTo (memoryStream);
-						builder = request.Load (memoryStream.ToArray ());
-					}
+				switch (source) {
+					case FileImageSource fileSource:
+						var drawable = ResourceManager.GetDrawableByName (fileSource.File);
+						if (drawable != 0) {
+							builder = request.Load (drawable);
+						} else {
+							builder = request.Load (fileSource.File);
+						}
+						break;
+
+					case UriImageSource uriSource:
+						builder = request.Load (uriSource.Uri.OriginalString);
+						break;
+
+					case StreamImageSource streamSource:
+						using (var memoryStream = new MemoryStream ())
+						using (var stream = await streamSource.Stream (token)) {
+							if (token.IsCancellationRequested || stream == null)
+								return;
+							stream.CopyTo (memoryStream);
+							builder = request.Load (memoryStream.ToArray ());
+						}
+						break;
 				}
 
-				if (builder != null) {
+				if (builder is null) {
+					Clear (imageView);
+				} else {
 					imageView.Visibility = ViewStates.Visible;
 					builder.Into (imageView);
-				} else {
-					Clear (imageView);
 				}
 			} catch (Exception exc) {
 				//Since developers can't catch this themselves, I think we should log it and silently fail
