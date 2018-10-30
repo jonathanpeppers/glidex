@@ -6,8 +6,8 @@
         <authors>Jonathan Peppers</authors>
         <owners>Jonathan Peppers</owners>
         <title>glidex.forms</title>
-        <description>A library containing Xamarin.Forms custom renderers to speed up images on Android. Based on Glide. Just add Android.Glide.Forms.Init(); after Xamarin.Forms.Forms.Init();</description>
-        <summary>A library containing Xamarin.Forms custom renderers to speed up images on Android. Based on Glide. Just add Android.Glide.Forms.Init(); after Xamarin.Forms.Forms.Init();</summary>
+        <description>A library containing a Xamarin.Forms IImageViewHandler to speed up images on Android. Based on Glide. Just add Android.Glide.Forms.Init(); after Xamarin.Forms.Forms.Init();</description>
+        <summary>A library containing a Xamarin.Forms IImageViewHandler to speed up images on Android. Based on Glide. Just add Android.Glide.Forms.Init(); after Xamarin.Forms.Forms.Init();</summary>
         <licenseUrl>https://raw.githubusercontent.com/jonathanpeppers/glidex/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/jonathanpeppers/glidex/</projectUrl>
         <repository type="git" url="https://github.com/jonathanpeppers/glidex"/>
