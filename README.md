@@ -61,6 +61,8 @@ So instead, I found it much easier to measure memory usage. I wrote a quick clas
 
 Here is a table of peak memory used via the different sample pages I've written:
 
+_NOTE: this was a past comparison with Xamarin.Forms 2.5.x_
+
 | Page             | Loaded by     | Peak Memory Usage |
 | ---              | ---           | ---:              |
 | GridPage         | Xamarin.Forms |       268,387,112 |
