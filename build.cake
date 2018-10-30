@@ -20,7 +20,7 @@ var dirs = new[]
 string output = dirs[0];
 string sln = "./glidex.sln";
 string version = "1.0.3";
-string suffix = "-pre";
+string suffix = "";
 
 Task("Clean")
     .Does(() =>
@@ -58,7 +58,6 @@ Task("NuGet-Package-GlideX")
     });
 
 Task("NuGet-Push-GlideX")
-    .IsDependentOn("NuGet-Package-GlideX")
     .Does(() =>
     {
         push("./build/glidex." + version + suffix + ".nupkg");
@@ -72,7 +71,6 @@ Task("NuGet-Package-GlideX-Forms")
     });
 
 Task("NuGet-Push-GlideX-Forms")
-    .IsDependentOn("NuGet-Package-GlideX-Forms")
     .Does(() =>
     {
         push("./build/glidex.forms." + version + suffix + ".nupkg");
