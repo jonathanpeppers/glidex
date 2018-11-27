@@ -13,6 +13,10 @@ namespace Android.Glide.Sample
 				HeightRequest = 50,
 				Source = Images.RandomSource (),
 			});
+			_stack.Children.Add (new ImageButton {
+				HeightRequest = 50,
+				Source = Images.RandomSource (),
+			});
 			_stack.Children.Add (new Image {
 				Source = ImageSource.FromFile ("doesn't exist")
 			});
