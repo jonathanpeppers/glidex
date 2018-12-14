@@ -1,3 +1,11 @@
+DirectoryPath vsDirectory  = VSWhereLatest(new VSWhereLatestSettings {
+    IncludePrerelease = true,
+    Version = "15.0",
+});
+Information($"Visual Studio Latest: {vsDirectory}");
+FilePath msbuild = vsDirectory?.CombineWithFilePath("./MSBuild/15.0/Bin/MSBuild.exe");
+Information($"MSBuild.exe: {msbuild}");
+
 void package(string version, string nuspec, string file, string output)
 {
     string configuration = Argument("configuration", "Release");
