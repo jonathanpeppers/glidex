@@ -17,6 +17,8 @@
     <AndroidClassParser>class-parse</AndroidClassParser>
     <AndroidCodegenTarget>XAJavaInterop1</AndroidCodegenTarget>
     <DebugType>portable</DebugType>
+    <!--Workaround until https://github.com/xamarin/xamarin-android/pull/2465-->
+    <AndroidSdkBuildToolsVersion>27.0.3</AndroidSdkBuildToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
