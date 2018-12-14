@@ -15,20 +15,8 @@ namespace Android.Glide
 		public static async Task LoadViaGlide (this ImageView imageView, ImageSource source, CancellationToken token)
 		{
 			try {
-				//NOTE: see https://github.com/bumptech/glide/issues/1484#issuecomment-365625087
-				if (imageView.Context is Activity activity) {
-					if (activity.IsFinishing) {
-						Forms.Warn ("Activity of type `{0}` is finishing, aborting image load for `{1}`.", activity.GetType ().FullName, source);
-						return;
-					}
-					if (activity.IsDestroyed) {
-						Forms.Warn ("Activity of type `{0}` is destroyed, aborting image load for `{1}`.", activity.GetType ().FullName, source);
-						return;
-					}
-				} else {
-					Forms.Warn ("Context `{0}` is not an Android.App.Activity, aborting image load for `{1}`.", imageView.Context, source);
+				if (!IsActivityAlive (imageView, source))
 					return;
-				}
 
 				RequestManager request = Glide.With (imageView.Context);
 				RequestBuilder builder = null;
@@ -80,6 +68,29 @@ namespace Android.Glide
 				//Since developers can't catch this themselves, I think we should log it and silently fail
 				Forms.Warn ("Unexpected exception in glidex: {0}", exc);
 			}
+		}
+
+		/// <summary>
+		/// NOTE: see https://github.com/bumptech/glide/issues/1484#issuecomment-365625087
+		/// </summary>
+		static bool IsActivityAlive (ImageView imageView, ImageSource source)
+		{
+			//NOTE: in some cases ContextThemeWrapper is Context, so only option is to look in Forms.Context for the Activity
+			var activity = imageView.Context as Activity ?? Xamarin.Forms.Forms.Context as Activity;
+			if (activity != null) {
+				if (activity.IsFinishing) {
+					Forms.Warn ("Activity of type `{0}` is finishing, aborting image load for `{1}`.", activity.GetType ().FullName, source);
+					return false;
+				}
+				if (activity.IsDestroyed) {
+					Forms.Warn ("Activity of type `{0}` is destroyed, aborting image load for `{1}`.", activity.GetType ().FullName, source);
+					return false;
+				}
+			} else {
+				Forms.Warn ("Context `{0}` is not an Android.App.Activity and could not use Forms.Context, aborting image load for `{1}`.", imageView.Context, source);
+				return false;
+			}
+			return true;
 		}
 
 		static void Clear (RequestManager request, ImageView imageView)
