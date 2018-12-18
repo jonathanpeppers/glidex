@@ -15,6 +15,7 @@ namespace Android.Glide.Sample
 			});
 			_stack.Children.Add (new ImageButton {
 				HeightRequest = 50,
+				BackgroundColor = Color.Fuchsia,
 				Source = Images.RandomSource (),
 			});
 			_stack.Children.Add (new Frame {
