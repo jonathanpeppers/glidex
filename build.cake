@@ -19,7 +19,7 @@ var dirs = new[]
 };
 string output = dirs[0];
 string sln = "./glidex.sln";
-string version = "1.0.3";
+string version = "1.0.4";
 string suffix = "";
 
 Task("Clean")
