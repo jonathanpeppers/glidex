@@ -2,19 +2,15 @@
 <ContentPage 
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:glidex.forms.sample"
     x:Class="Android.Glide.Sample.MainPage"
     Title="GlideX.Forms Sample">
     <StackLayout Padding="5">
-        <Label Text="400 Images in a Grid:" />
         <Button Clicked="Grid_Clicked" Text="Grid Example" />
-        <Label Text="Edge Cases:" />
         <Button Clicked="Edge_Clicked" Text="Edge Cases" />
-        <Label Text="Images in a ViewCell in a ListView" />
         <Button Clicked="ViewCell_Clicked" Text="ViewCells" />
-        <Label Text="ImageCells in a ListView" />
         <Button Clicked="ImageCell_Clicked" Text="ImageCells" />
-        <Label Text="Huge Images (Profiled)" />
         <Button Clicked="HugeImage_Clicked" Text="Huge Images" />
+        <Button Clicked="ToggleImages_Clicked" Text="Toggle Images" />
+        <Button Clicked="ToggleImagesMaterial_Clicked" Text="Toggle Images Material" />
     </StackLayout>
 </ContentPage>

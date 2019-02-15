@@ -33,5 +33,15 @@ namespace Android.Glide.Sample
 		{
 			await Navigation.PushAsync (new HugeImagePage ());
 		}
+
+		async void ToggleImages_Clicked (object sender, EventArgs e)
+		{
+			await Navigation.PushAsync (new ToggleSourcePage ());
+		}
+
+		async void ToggleImagesMaterial_Clicked (object sender, EventArgs e)
+		{
+			await Navigation.PushAsync (new ToggleSourcePage { Visual = VisualMarker.Material });
+		}
 	}
 }
