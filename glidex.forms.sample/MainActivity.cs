@@ -17,7 +17,8 @@ namespace Android.Glide.Sample
 			Xamarin.Forms.Forms.SetFlags ("Visual_Experimental");
 			Xamarin.Forms.Forms.Init (this, bundle);
 			//Force the custom renderers to get loaded
-			Android.Glide.Forms.Init (debug: true);
+			//Android.Glide.Forms.Init (debug: true);
+			Picasso.Forms.Init (debug: true);
 			LoadApplication (new App ());
 		}
 	}
