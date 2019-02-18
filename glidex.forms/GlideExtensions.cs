@@ -75,7 +75,7 @@ namespace Android.Glide
 		/// </summary>
 		static bool IsActivityAlive (ImageView imageView, ImageSource source)
 		{
-            //NOTE: in some cases ContextThemeWrapper is Context, so only option is to look in Forms.Context for the Activity
+            //NOTE: in some cases ContextThemeWrapper is Context
             var activity = imageView.Context as Activity ?? Forms.GlidexActivity;
 			if (activity != null) {
 				if (activity.IsFinishing) {
