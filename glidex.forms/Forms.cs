@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Android.App;
+using System;
 
 namespace Android.Glide
 {
@@ -9,17 +10,19 @@ namespace Android.Glide
 	{
 		static bool initialized;
 
+        internal static Activity GlidexActivity { get; private set; }
+
 		/// <summary>
 		/// Initializes glidex.forms, put this after your `Xamarin.Forms.Forms.Init (this, bundle);` call.
 		/// </summary>
 		/// <param name="debug">Enables debug logging. Turn this on to verify Glide is being used in your app.</param>
-		public static void Init (bool debug = false)
+		public static void Init (Activity activity, bool debug = false)
 		{
 			if (initialized)
 				return;
 
 			IsDebugEnabled = debug;
-
+            GlidexActivity = activity; 
 			initialized = true;
 		}
 

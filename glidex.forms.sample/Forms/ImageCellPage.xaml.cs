@@ -3,13 +3,13 @@ using Xamarin.Forms;
 
 namespace Android.Glide.Sample
 {
-	public partial class ImageCellPage
-	{
-		public ImageCellPage ()
-		{
-			InitializeComponent ();
+    public partial class ImageCellPage
+    {
+        public ImageCellPage()
+        {
+            InitializeComponent();
 
-			BindingContext = Images.RandomSources ().ToArray ();
-		}
-	}
+            BindingContext = Images.RandomSources().ToArray();
+        }
+    }
 }
