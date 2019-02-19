@@ -76,7 +76,7 @@ namespace Android.Glide
 		static bool IsActivityAlive (ImageView imageView, ImageSource source)
 		{
             //NOTE: in some cases ContextThemeWrapper is Context
-            var activity = imageView.Context as Activity ?? Forms.GlidexActivity;
+            var activity = imageView.Context as Activity ?? Forms.Activity;
 			if (activity != null) {
 				if (activity.IsFinishing) {
 					Forms.Warn ("Activity of type `{0}` is finishing, aborting image load for `{1}`.", activity.GetType ().FullName, source);

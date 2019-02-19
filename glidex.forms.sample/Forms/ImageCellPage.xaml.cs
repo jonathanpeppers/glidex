@@ -5,11 +5,11 @@ namespace Android.Glide.Sample
 {
     public partial class ImageCellPage
     {
-        public ImageCellPage()
+        public ImageCellPage ()
         {
-            InitializeComponent();
+            InitializeComponent ();
 
-            BindingContext = Images.RandomSources().ToArray();
+            BindingContext = Images.RandomSources ().ToArray ();
         }
     }
 }
