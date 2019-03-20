@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.OS;
 using System;
 
 namespace Android.Glide
@@ -8,8 +9,9 @@ namespace Android.Glide
 	/// </summary>
 	public static class Forms
 	{
-		internal static Activity Activity { get; private set; }
+		internal static Activity Activity { get; set; }
 
+		static readonly ActivityLifecycle lifecycle = new ActivityLifecycle ();
 
 		/// <summary>
 		/// Initializes glidex.forms, put this after your `Xamarin.Forms.Forms.Init (this, bundle);` call.
@@ -30,6 +32,7 @@ namespace Android.Glide
 		{
 			Activity = activity;
 			IsDebugEnabled = debug;
+			activity.Application.RegisterActivityLifecycleCallbacks (lifecycle);
 		}
 
 		/// <summary>
@@ -51,6 +54,28 @@ namespace Android.Glide
 		{
 			if (IsDebugEnabled)
 				Util.Log.Debug (Tag, format, args);
+		}
+
+		class ActivityLifecycle : Java.Lang.Object, Application.IActivityLifecycleCallbacks
+		{
+			public void OnActivityCreated (Activity activity, Bundle savedInstanceState) { }
+
+			public void OnActivityDestroyed (Activity activity)
+			{
+				if (Activity == activity) {
+					Activity = null;
+				}
+			}
+
+			public void OnActivityPaused (Activity activity) { }
+
+			public void OnActivityResumed (Activity activity) { }
+
+			public void OnActivitySaveInstanceState (Activity activity, Bundle outState) { }
+
+			public void OnActivityStarted (Activity activity) { }
+
+			public void OnActivityStopped (Activity activity) { }
 		}
 	}
 }
