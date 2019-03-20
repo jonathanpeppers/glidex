@@ -9,6 +9,10 @@ Download from NuGet (use the Prerelease checkbox):
 |---|---|
 | [![NuGet](https://img.shields.io/nuget/dt/glidex.svg)](https://www.nuget.org/packages/glidex) | [![NuGet](https://img.shields.io/nuget/dt/glidex.forms.svg)](https://www.nuget.org/packages/glidex.forms) |
 
+Learn more on this episode of the Xamarin Show:
+
+[![Super Fast Image Loading for Android Apps with GlideX | The Xamarin Show](https://img.youtube.com/vi/IYF2ChHTTWc/maxresdefault.jpg)](https://youtu.be/IYF2ChHTTWc)
+
 We don't want or care to bind the entirety of Glide's public API surface. Our goal here is to just bind the "useful" APIs for Glide.
 
 For example take the following C#:
