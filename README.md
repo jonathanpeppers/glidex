@@ -9,7 +9,7 @@ Download from NuGet (use the Prerelease checkbox):
 |---|---|
 | [![NuGet](https://img.shields.io/nuget/dt/glidex.svg)](https://www.nuget.org/packages/glidex) | [![NuGet](https://img.shields.io/nuget/dt/glidex.forms.svg)](https://www.nuget.org/packages/glidex.forms) |
 
-Learn more on this episode of the Xamarin Show:
+Learn more on [this episode of the Xamarin Show](https://youtu.be/IYF2ChHTTWc):
 
 [![Super Fast Image Loading for Android Apps with GlideX | The Xamarin Show](https://img.youtube.com/vi/IYF2ChHTTWc/maxresdefault.jpg)](https://youtu.be/IYF2ChHTTWc)
 
