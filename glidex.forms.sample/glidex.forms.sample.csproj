@@ -73,6 +73,9 @@
     <Compile Include="Forms\ImageCellPage.xaml.cs">
       <DependentUpon>ImageCellPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MatchPage.xaml.cs">
+      <DependentUpon>MatchPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Profiler\MemoryProfiler.cs" />
     <Compile Include="Forms\Profiler\ProfilerPage.cs" />
     <Compile Include="Forms\Profiler\Profiler.cs" />
@@ -107,59 +110,45 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\App.xaml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Forms\MainPage.xaml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\patch1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\patch2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\patch3.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\patch4.jpg" />
+    <AndroidResource Include="Resources\drawable\trump.jpg" />
+    <AndroidResource Include="Resources\drawable-xxxhdpi\back.png" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\assetpatch1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidAsset Include="Assets\assetpatch2.jpg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="embeddedpatch1.jpg" />
+    <EmbeddedResource Include="back.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\App.xaml" />
+    <EmbeddedResource Include="Forms\MainPage.xaml" />
     <EmbeddedResource Include="Forms\GridPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Forms\EdgeCasesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Forms\ViewCellPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Forms\ImageCellPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Forms\HugeImagePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\drawable\trump.jpg" />
+    <EmbeddedResource Include="Forms\ToggleSourcePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MatchPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\glidex.forms\glidex.forms.csproj">
@@ -170,11 +159,6 @@
       <Project>{d8d4d6c6-b845-4114-ade0-ea3777c5e452}</Project>
       <Name>glidex</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Forms\ToggleSourcePage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

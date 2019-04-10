@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Android.Glide.Sample.MatchPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Label Text="Images on this page should match" />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Image x:Name="image1" Grid.Row="0" Grid.Column="0" Aspect="AspectFit" />
+            <Image x:Name="image2" Grid.Row="0" Grid.Column="1" Aspect="AspectFit" />
+            <Image x:Name="image3" Grid.Row="1" Grid.Column="0" Aspect="AspectFit" />
+            <Image x:Name="image4" Grid.Row="1" Grid.Column="1" Aspect="AspectFit" />
+        </Grid>
+    </Grid>
+</ContentPage>

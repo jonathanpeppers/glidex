@@ -4,7 +4,6 @@ using Xamarin.Forms.Xaml;
 
 namespace Android.Glide.Sample
 {
-	[XamlCompilation (XamlCompilationOptions.Compile)]
 	public partial class ToggleSourcePage : ContentPage
 	{
 		public ToggleSourcePage ()
