@@ -87,7 +87,7 @@ namespace Android.Glide
 					return false;
 				}
 			} else {
-				Forms.Warn ("Context `{0}` is not an Android.App.Activity and could not use Forms.Context, aborting image load for `{1}`.", imageView.Context, source);
+				Forms.Warn ("Context `{0}` is not an Android.App.Activity and could not use Android.Glide.Forms.Activity, aborting image load for `{1}`.", imageView.Context, source);
 				return false;
 			}
 			return true;
