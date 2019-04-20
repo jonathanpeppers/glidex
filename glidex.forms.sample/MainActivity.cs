@@ -14,7 +14,7 @@ namespace Android.Glide.Sample
 
 			base.OnCreate (bundle);
 
-			Xamarin.Forms.Forms.SetFlags ("Visual_Experimental");
+			Xamarin.Forms.Forms.SetFlags ("Visual_Experimental", "FastRenderers_Experimental");
 			Xamarin.Forms.Forms.Init (this, bundle);
 			//Force the custom renderers to get loaded
 			Android.Glide.Forms.Init (this, debug: true);
