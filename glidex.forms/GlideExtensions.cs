@@ -52,6 +52,8 @@ namespace Android.Glide
 						using (var stream = await streamSource.Stream (token)) {
 							if (token.IsCancellationRequested || stream == null)
 								return;
+							if (!IsActivityAlive (imageView, source))
+								return;
 							stream.CopyTo (memoryStream);
 							builder = request.Load (memoryStream.ToArray ());
 						}
@@ -75,6 +77,13 @@ namespace Android.Glide
 		/// </summary>
 		static bool IsActivityAlive (ImageView imageView, ImageSource source)
 		{
+			// The imageView.Handle could be IntPtr.Zero? Meaning we somehow have a reference to a disposed ImageView...
+			// I think this is within the realm of "possible" after the await call in LoadViaGlide().
+			if (imageView.Handle == IntPtr.Zero) {
+				Forms.Warn ("imageView.Handle is IntPtr.Zero, aborting image load for `{0}`.", source);
+				return false;
+			}
+
 			//NOTE: in some cases ContextThemeWrapper is Context
 			var activity = imageView.Context as Activity ?? Forms.Activity;
 			if (activity != null) {
