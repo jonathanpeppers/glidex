@@ -1,13 +1,16 @@
-# glidex and glidex.forms
+# glidex.forms (or just glidex)
 
 Google recommends [Glide][glide] for simplifying the complexity of
 managing `Android.Graphics.Bitmap` within your apps ([docs
 here][glide_docs]).
 
-glidex.forms is a prototype of what we can do to improve Xamarin.Forms image performance on Android by taking a dependency on Glide. See my post on the topic [here](http://jonathanpeppers.com/Blog/xamarin-forms-performance-on-android).
+glidex.forms is small library we can use to improve Xamarin.Forms
+image performance on Android by taking a dependency on Glide. See my
+post on the topic [here][blog].
 
 [glide]: https://github.com/bumptech/glide
 [glide_docs]: https://developer.android.com/topic/performance/graphics/manage-memory.html
+[blog]: http://jonathanpeppers.com/Blog/xamarin-forms-performance-on-android
 
 Download from NuGet:
 
@@ -26,13 +29,9 @@ If you have a "classic" Xamarin.Android app that is not Xamarin.Forms, it could 
 
 _glidex.forms is currently using the 4.9.0 release of Xamarin.Android.Glide_
 
-# glidex.forms for Xamarin.Forms on Android
+# How do I use glidex.forms?
 
-My goal with this repo is to get fast Images for Xamarin.Forms on Android by using Glide.
-
-The new `IImageViewHandler` API in Xamarin.Forms 3.3.x, allows glidex.forms to operate without using *any* custom renderers!
-
-But to set this library up in your existing project, merely:
+To set this library up in your existing project, merely:
 - Add the `glidex.forms` NuGet package
 - Add this one liner after your app's `Forms.Init` call:
 
