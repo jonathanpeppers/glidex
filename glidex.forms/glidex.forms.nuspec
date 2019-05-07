@@ -16,7 +16,7 @@
         <releaseNotes></releaseNotes>
         <tags>Xamarin, Xamarin.Forms, Android, Glide, Bitmap, Images</tags>
         <dependencies>
-            <dependency id="Xamarin.Android.Glide" version="4.0.0" />
+            <dependency id="Xamarin.Android.Glide" version="4.9.0" />
             <dependency id="Xamarin.Forms" version="3.4.0.1029999" />
         </dependencies>
     </metadata>
