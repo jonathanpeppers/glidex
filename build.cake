@@ -15,8 +15,8 @@ var dirs = new[]
 };
 string output = dirs[0];
 string sln = "./glidex.sln";
-string version = "1.0.4";
-string suffix = "";
+string version = "2.0.0";
+string suffix = "pre1";
 
 Task("Clean")
     .Does(() =>
