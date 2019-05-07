@@ -38,7 +38,7 @@ To set this library up in your existing project, merely:
 ```csharp
 Xamarin.Forms.Forms.Init (this, bundle);
 //This forces the custom renderers to be used
-Android.Glide.Forms.Init ();
+Android.Glide.Forms.Init (this);
 LoadApplication (new App ());
 ```
 
@@ -46,7 +46,7 @@ LoadApplication (new App ());
 
 On first use, you may want to enable debug logging:
 ```csharp
-Android.Glide.Forms.Init (debug: true);
+Android.Glide.Forms.Init (this, debug: true);
 ```
 glidex.forms will print out log messages in your device log as to what is happening under the hood.
 
