@@ -1,12 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2036
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "glidex", "glidex\glidex.csproj", "{D8D4D6C6-B845-4114-ADE0-EA3777C5E452}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "glidex.sample", "glidex.sample\glidex.sample.csproj", "{939B8958-F2DF-4E9A-9142-EE00696849A0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "glidex.forms", "glidex.forms\glidex.forms.csproj", "{DFB39F19-EEC3-4ECB-888D-D84C3B4A9113}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "glidex.forms.sample", "glidex.forms.sample\glidex.forms.sample.csproj", "{DB4A1807-62A6-4AAE-8298-AD21728CBAAF}"
@@ -22,16 +18,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D8D4D6C6-B845-4114-ADE0-EA3777C5E452}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8D4D6C6-B845-4114-ADE0-EA3777C5E452}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8D4D6C6-B845-4114-ADE0-EA3777C5E452}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8D4D6C6-B845-4114-ADE0-EA3777C5E452}.Release|Any CPU.Build.0 = Release|Any CPU
-		{939B8958-F2DF-4E9A-9142-EE00696849A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{939B8958-F2DF-4E9A-9142-EE00696849A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{939B8958-F2DF-4E9A-9142-EE00696849A0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{939B8958-F2DF-4E9A-9142-EE00696849A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{939B8958-F2DF-4E9A-9142-EE00696849A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{939B8958-F2DF-4E9A-9142-EE00696849A0}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{DFB39F19-EEC3-4ECB-888D-D84C3B4A9113}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DFB39F19-EEC3-4ECB-888D-D84C3B4A9113}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFB39F19-EEC3-4ECB-888D-D84C3B4A9113}.Release|Any CPU.ActiveCfg = Release|Any CPU

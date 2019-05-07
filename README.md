@@ -1,49 +1,44 @@
-# glidex and glidex.forms
-glidex is a minimalist Xamarin.Android binding of [Glide](https://github.com/bumptech/glide). Google recommends Glide for simplifying the complexity of managing `Android.Graphics.Bitmap` within your apps ([docs here](https://developer.android.com/topic/performance/graphics/manage-memory.html)).
+# glidex.forms (or just glidex)
 
-glidex.forms is a prototype of what we can do to improve Xamarin.Forms image performance on Android by taking a dependency on Glide. See my post on the topic [here](http://jonathanpeppers.com/Blog/xamarin-forms-performance-on-android).
+Google recommends [Glide][glide] for simplifying the complexity of
+managing `Android.Graphics.Bitmap` within your apps ([docs
+here][glide_docs]).
 
-Download from NuGet (use the Prerelease checkbox):
+glidex.forms is small library we can use to improve Xamarin.Forms
+image performance on Android by taking a dependency on Glide. See my
+post on the topic [here][blog].
 
-| glidex | glidex.forms |
-|---|---|
-| [![NuGet](https://img.shields.io/nuget/dt/glidex.svg)](https://www.nuget.org/packages/glidex) | [![NuGet](https://img.shields.io/nuget/dt/glidex.forms.svg)](https://www.nuget.org/packages/glidex.forms) |
+[glide]: https://github.com/bumptech/glide
+[glide_docs]: https://developer.android.com/topic/performance/graphics/manage-memory.html
+[blog]: http://jonathanpeppers.com/Blog/xamarin-forms-performance-on-android
+
+Download from NuGet:
+
+| glidex.forms |
+|---|
+| [![NuGet](https://img.shields.io/nuget/dt/glidex.forms.svg)](https://www.nuget.org/packages/glidex.forms) |
 
 Learn more on [this episode of the Xamarin Show](https://youtu.be/IYF2ChHTTWc):
 
 [![Super Fast Image Loading for Android Apps with GlideX | The Xamarin Show](https://img.youtube.com/vi/IYF2ChHTTWc/maxresdefault.jpg)](https://youtu.be/IYF2ChHTTWc)
 
-We don't want or care to bind the entirety of Glide's public API surface. Our goal here is to just bind the "useful" APIs for Glide.
+If you have a "classic" Xamarin.Android app that is not Xamarin.Forms, it could be useful to use the [Xamarin.Android.Glide][xa_glide] NuGet package. If you want to improve the Xamarin binding for Glide, contribute to it on [Github][xa_glide_github]!
 
-For example take the following C#:
-```csharp
-var image = FindViewById<ImageView> (Resource.Id.testImage);
-Glide.With (this)
-    .Load ("https://botlist.co/system/BotList/Bot/logos/000/002/271/medium/chuck_norris.jpg")
-    .Apply (RequestOptions.CircleCropTransform ().Placeholder (Android.Resource.Drawable.IcMenuCamera))
-    .Into (image);
-```
+[xa_glide]: https://www.nuget.org/packages/Xamarin.Android.Glide/
+[xa_glide_github]: https://github.com/xamarin/XamarinComponents/tree/master/Android/Glide
 
-This code loads an image from a URL dynamically, taking care of all of Glide's cool caching functionality. These are the only APIs we need to make the library useful.
+_glidex.forms is currently using the 4.9.0 release of Xamarin.Android.Glide_
 
-If you have a "classic" Xamarin.Android app that is not Xamarin.Forms, it could be useful to use the `glidex` NuGet package directly.
+# How do I use glidex.forms?
 
-_glidex is currently using the 4.7.0 release of Glide from Github_
-
-# glidex.forms for Xamarin.Forms on Android
-
-My goal with this repo is to get fast Images for Xamarin.Forms on Android by using Glide.
-
-The new `IImageViewHandler` API in Xamarin.Forms 3.3.x, allows glidex.forms to operate without using *any* custom renderers!
-
-But to set this library up in your existing project, merely:
+To set this library up in your existing project, merely:
 - Add the `glidex.forms` NuGet package
 - Add this one liner after your app's `Forms.Init` call:
 
 ```csharp
 Xamarin.Forms.Forms.Init (this, bundle);
 //This forces the custom renderers to be used
-Android.Glide.Forms.Init ();
+Android.Glide.Forms.Init (this);
 LoadApplication (new App ());
 ```
 
@@ -51,7 +46,7 @@ LoadApplication (new App ());
 
 On first use, you may want to enable debug logging:
 ```csharp
-Android.Glide.Forms.Init (debug: true);
+Android.Glide.Forms.Init (this, debug: true);
 ```
 glidex.forms will print out log messages in your device log as to what is happening under the hood.
 
@@ -80,9 +75,15 @@ _NOTE: this was a past comparison with Xamarin.Forms 2.5.x_
 
 _NOTE: I believe these numbers are in bytes. I restarted the app (release mode) before recording the numbers for each page. Pages with ListViews I scrolled up and down a few times._
 
-Stock XF performance of images is poor due to the amount of `Android.Graphics.Bitmap` instances created on each page. Disabling the Glide library in the sample app causes "out of memory" errors to happen as images load. You will see empty white squares where this occurs and get console output.
+Stock XF performance of images is poor due to the amount of
+`Android.Graphics.Bitmap` instances created on each page. Disabling
+the Glide library in the sample app causes "out of memory" errors to
+happen as images load. You will see empty white squares where this
+occurs and get console output.
 
-To try stock Xamarin.Forms behavior yourself, you can remove the references to `glidex` and `glidex.forms` in the `glide.forms.sample` project and comment out the `Android.Glide.Forms.Init()` line.
+To try stock Xamarin.Forms behavior yourself, you can remove the
+references to `glidex` and `glidex.forms` in the `glide.forms.sample`
+project and comment out the `Android.Glide.Forms.Init()` line.
 
 # Features
 

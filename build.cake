@@ -8,19 +8,15 @@ string configuration = Argument("configuration", "Release");
 var dirs = new[] 
 {
     Directory("./build"),
-    Directory("./glidex/bin") + Directory(configuration),
-    Directory("./glidex/obj") + Directory(configuration),
     Directory("./glidex.forms/bin") + Directory(configuration),
     Directory("./glidex.forms/obj") + Directory(configuration),
-    Directory("./glidex.sample/bin") + Directory(configuration),
-    Directory("./glidex.sample/obj") + Directory(configuration),
     Directory("./glidex.forms.sample/bin") + Directory(configuration),
     Directory("./glidex.forms.sample/obj") + Directory(configuration),
 };
 string output = dirs[0];
 string sln = "./glidex.sln";
-string version = "1.0.4";
-string suffix = "";
+string version = "2.0.0";
+string suffix = "-pre1";
 
 Task("Clean")
     .Does(() =>
@@ -50,39 +46,18 @@ Task("Install")
         MSBuild("./glidex.forms.sample/glidex.forms.sample.csproj", settings => settings.SetConfiguration(configuration).WithTarget("Install").WithTarget("_Run"));
     });
 
-Task("NuGet-Package-GlideX")
-    .IsDependentOn("Build")
-    .Does(() =>
-    {
-        package(version + suffix, "./glidex/glidex.nuspec", "glidex.dll", output);
-    });
-
-Task("NuGet-Push-GlideX")
-    .Does(() =>
-    {
-        push("./build/glidex." + version + suffix + ".nupkg");
-    });
-
-Task("NuGet-Package-GlideX-Forms")
+Task("NuGet-Package")
     .IsDependentOn("Build")
     .Does(() =>
     {
         package(version + suffix, "./glidex.forms/glidex.forms.nuspec", "glidex.forms.dll", output);
     });
 
-Task("NuGet-Push-GlideX-Forms")
+Task("NuGet-Push")
     .Does(() =>
     {
         push("./build/glidex.forms." + version + suffix + ".nupkg");
     });
-
-Task("NuGet-Package")
-    .IsDependentOn("NuGet-Package-GlideX")
-    .IsDependentOn("NuGet-Package-GlideX-Forms");
-
-Task("NuGet-Push")
-    .IsDependentOn("NuGet-Push-GlideX")
-    .IsDependentOn("NuGet-Push-GlideX-Forms");
 
 Task("Default")
     .IsDependentOn("NuGet-Package");

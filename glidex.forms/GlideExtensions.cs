@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using Android.App;
 using Android.Views;
 using Android.Widget;
+using Bumptech.Glide;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using static Bumptech.Glide.Glide;
 
 namespace Android.Glide
 {
@@ -18,7 +20,7 @@ namespace Android.Glide
 				if (!IsActivityAlive (imageView, source))
 					return;
 
-				RequestManager request = Glide.With (imageView.Context);
+				RequestManager request = With (imageView.Context);
 				RequestBuilder builder = null;
 
 				if (source is null) {

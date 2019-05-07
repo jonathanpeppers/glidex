@@ -155,10 +155,6 @@
       <Project>{dfb39f19-eec3-4ecb-888d-d84c3b4a9113}</Project>
       <Name>glidex.forms</Name>
     </ProjectReference>
-    <ProjectReference Include="..\glidex\glidex.csproj">
-      <Project>{d8d4d6c6-b845-4114-ade0-ea3777c5e452}</Project>
-      <Name>glidex</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
