@@ -9,7 +9,9 @@ namespace Android.Glide
 	/// </summary>
 	public static class Forms
 	{
-		internal static Activity Activity { get; set; }
+		internal static Activity Activity { get; private set; }
+
+		internal static IGlideHandler GlideHandler { get; private set; }
 
 		static readonly ActivityLifecycle lifecycle = new ActivityLifecycle ();
 
@@ -20,17 +22,19 @@ namespace Android.Glide
 		[Obsolete ("Use Forms.Init(Activity,bool) instead.")]
 		public static void Init (bool debug = false)
 		{
-			Init ((Activity)Xamarin.Forms.Forms.Context, debug);
+			Init ((Activity)Xamarin.Forms.Forms.Context, debug: debug);
 		}
 
 		/// <summary>
 		/// Initializes glidex.forms, put this after your `Xamarin.Forms.Forms.Init (this, bundle);` call.
 		/// </summary>
 		/// <param name="activity">The MainActivity of your application.</param>
+		/// <param name="handler">An implementation of IGlideHandler for customizing calls to Glide.</param>
 		/// <param name="debug">Enables debug logging. Turn this on to verify Glide is being used in your app.</param>
-		public static void Init (Activity activity, bool debug = false)
+		public static void Init (Activity activity, IGlideHandler handler = null, bool debug = false)
 		{
 			Activity = activity;
+			GlideHandler = handler;
 			IsDebugEnabled = debug;
 			activity.Application.RegisterActivityLifecycleCallbacks (lifecycle);
 		}
