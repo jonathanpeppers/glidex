@@ -18,6 +18,8 @@ namespace Android.Glide.Sample
 			Xamarin.Forms.Forms.Init (this, bundle);
 			//Force the custom renderers to get loaded
 			Android.Glide.Forms.Init (this, debug: true);
+			// Or use this one instead to try IGlideHandler
+			// Android.Glide.Forms.Init (this, handler: new RandomAlphaHandler (), debug: true);
 			LoadApplication (new App ());
 		}
 	}

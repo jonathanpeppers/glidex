@@ -62,6 +62,14 @@ namespace Android.Glide
 						break;
 				}
 
+				var handler = Forms.GlideHandler;
+				if (handler != null) {
+					Forms.Debug ("Calling into {0} of type `{1}`.", nameof (IGlideHandler), handler.GetType ());
+					 if (handler.Build (imageView, source, builder, token)) {
+						return;
+					}
+				}
+
 				if (builder is null) {
 					Clear (request, imageView);
 				} else {
