@@ -25,25 +25,17 @@ Task("Clean")
             CleanDirectory(dir);
     });
 
-Task("Restore-NuGet-Packages")
-    .IsDependentOn("Clean")
-    .Does(() =>
-    {
-        NuGetRestore(sln);
-    });
-
 Task("Build")
-    .IsDependentOn("Restore-NuGet-Packages")
     .Does(() =>
     {
-        MSBuild(sln, settings => settings.SetConfiguration(configuration));
+        MSBuild(sln, MSBuildSettings());
     });
 
 Task("Install")
     .IsDependentOn("Build")
     .Does(() =>
     {
-        MSBuild("./glidex.forms.sample/glidex.forms.sample.csproj", settings => settings.SetConfiguration(configuration).WithTarget("Install").WithTarget("_Run"));
+        MSBuild("./glidex.forms.sample/glidex.forms.sample.csproj", MSBuildSettings().WithTarget("Install").WithTarget("_Run"));
     });
 
 Task("NuGet-Package")
