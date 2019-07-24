@@ -50,6 +50,12 @@ MSBuildSettings MSBuildSettings()
 
         Information("Building using MSBuild at " + msBuildPath);
         settings.ToolPath = msBuildPath;
+
+        var java_home = Environment.GetEnvironmentVariable("JAVA_HOME");
+        if (!string.IsNullOrEmpty(java_home))
+        {
+            settings = settings.WithProperty("JavaSdkDirectory", java_home);
+        }
     }
     else
     {
