@@ -1,3 +1,4 @@
+#addin nuget:?package=Cake.Boots&version=0.1.0.286-beta
 #load "helpers.cake"
 
 // Input args
@@ -17,6 +18,13 @@ string output = dirs[0];
 string sln = "./glidex.sln";
 string version = "2.0.0";
 string suffix = "-pre1";
+
+Task("Boots")
+    .Does(async () =>
+    {
+        var platform = IsRunningOnWindows() ? "windows" : "macos";
+        await Boots ($"https://aka.ms/xamarin-android-commercial-d16-2-{platform}");
+    });
 
 Task("Clean")
     .Does(() =>
@@ -52,6 +60,10 @@ Task("NuGet-Push")
     });
 
 Task("Default")
+    .IsDependentOn("NuGet-Package");
+
+Task("AppVeyor")
+    .IsDependentOn("Boots")
     .IsDependentOn("NuGet-Package");
 
 RunTarget(target);
