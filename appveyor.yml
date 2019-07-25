@@ -1,7 +1,7 @@
 version: '{build}'
-image: Visual Studio 2019 Preview
+image: Visual Studio 2017
 build_script:
-- ps: .\build.ps1
+- ps: .\build.ps1 -t AppVeyor
 branches:
   only:
     - master
