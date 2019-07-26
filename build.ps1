@@ -81,7 +81,7 @@ function MD5HashFile([string] $filePath)
 }
 
 Write-Host "JAVA_HOME=$env:JAVA_HOME"
-ls "$env:ProgramFiles\Android\jdk"
+ls -n "$env:ProgramFiles\Android\jdk"
 
 Write-Host "Preparing to run build script..."
 
