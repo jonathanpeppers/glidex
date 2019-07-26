@@ -5,9 +5,6 @@ name: $(BuildID)
 trigger:
 - master
 
-variables:
-  JavaSdkDirectory: $(JAVA_HOME_8_X64)
-
 jobs:
 - job: windows
   pool:
