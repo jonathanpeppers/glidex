@@ -4,7 +4,7 @@ build_script:
 - ps: >-
     Write-Host "JAVA_HOME=$env:JAVA_HOME"
     ls $env:ProgramFiles
-    ls "$env:ProgramFiles(x86)"
+    ls ${env:ProgramFiles(x86)}
     .\build.ps1 -t AppVeyor
 branches:
   only:
