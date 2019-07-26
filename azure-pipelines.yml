@@ -19,5 +19,5 @@ jobs:
     displayName: artifacts
     inputs:
       artifactName: artifacts
-      targetPath: bin
+      targetPath: build
     condition: succeededOrFailed()
