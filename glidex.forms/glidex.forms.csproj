@@ -56,4 +56,10 @@
     <Compile Include="IGlideHandler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+    <Target Name="BeforeBuild">
+    <Message
+        Text="XamarinAndroidVersion: $(XamarinAndroidVersion)"
+        Importance="High"
+    />
+  </Target>
 </Project>

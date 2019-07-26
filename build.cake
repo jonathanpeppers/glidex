@@ -22,8 +22,8 @@ string suffix = "-pre1";
 Task("Boots")
     .Does(async () =>
     {
-        var platform = IsRunningOnWindows() ? "windows" : "macos";
-        await Boots ($"https://aka.ms/xamarin-android-commercial-d16-2-{platform}");
+        // var platform = IsRunningOnWindows() ? "windows" : "macos";
+        // await Boots ($"https://aka.ms/xamarin-android-commercial-d16-2-{platform}");
     });
 
 Task("Clean")
