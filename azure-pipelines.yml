@@ -1,0 +1,23 @@
+# https://aka.ms/yaml
+
+name: $(BuildID)
+
+trigger:
+- master
+
+jobs:
+- job: windows
+  pool:
+    name: Hosted Windows 2019 with VS2019
+    demands:
+    - msbuild
+  steps:
+  - powershell: |
+      ./build.ps1 -t AppVeyor
+    displayName: build
+  - task: PublishPipelineArtifact@0
+    displayName: artifacts
+    inputs:
+      artifactName: artifacts
+      targetPath: build
+    condition: succeededOrFailed()
