@@ -80,6 +80,10 @@ function MD5HashFile([string] $filePath)
     }
 }
 
+Write-Host "JAVA_HOME=$env:JAVA_HOME"
+ls $env:ProgramFiles
+ls ${env:ProgramFiles(x86)}
+
 Write-Host "Preparing to run build script..."
 
 if(!$PSScriptRoot){
