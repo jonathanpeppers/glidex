@@ -30,7 +30,7 @@ void push(string file)
 
 MSBuildSettings MSBuildSettings()
 {
-    var settings = new MSBuildSettings { Configuration = configuration, Verbosity = Verbosity.Diagnostic };
+    var settings = new MSBuildSettings { Configuration = configuration };
 
     if (IsRunningOnWindows())
     {
