@@ -19,6 +19,12 @@ string sln = "./glidex.sln";
 string version = "2.0.0";
 string suffix = "-pre1";
 
+string buildNumber = Environment.GetEnvironmentVariable ("BUILD_BUILDNUMBER");
+if (!string.IsNullOrEmpty(buildNumber))
+{
+    version += "." + buildNumber;
+}
+
 Task("Boots")
     .Does(async () =>
     {
