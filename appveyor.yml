@@ -1,7 +1,11 @@
 version: '{build}'
 image: Visual Studio 2019
 build_script:
-- ps: .\build.ps1 -t AppVeyor
+- ps: |
+  Write-Host "JAVA_HOME=$env:JAVA_HOME"
+	ls $env:ProgramFiles
+	ls "$env:ProgramFiles(x86)"
+  .\build.ps1 -t AppVeyor
 branches:
   only:
     - master
