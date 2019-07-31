@@ -19,6 +19,17 @@ string sln = "./glidex.sln";
 string version = "2.0.0";
 string suffix = "-pre1";
 
+#r "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Xamarin\Android\Xamarin.Android.Tools.AndroidSdk.dll"
+#r "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Xamarin\Android\Xamarin.Android.Tools.AndroidSdk.dll"
+
+var infos = Xamarin.Android.Tools.JdkInfo.GetKnownSystemJdkInfos();
+Warning ("JdkInfos.Length: " + infos.Count());
+foreach (var info in infos)
+{
+    Warning ("JdkInfo: " + info);
+}
+
+
 Task("Boots")
     .Does(async () =>
     {
