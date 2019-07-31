@@ -80,6 +80,8 @@ function MD5HashFile([string] $filePath)
     }
 }
 
+Write-Host "ProgramW6432=$env:ProgramW6432"
+Write-Host "ProgramFilesx86=${env:ProgramFiles(x86)}"
 Write-Host "JAVA_HOME=$env:JAVA_HOME"
 ls -r -n "$env:ProgramFiles\Android\jdk"
 
