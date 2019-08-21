@@ -9,7 +9,7 @@ namespace Android.Glide.Sample
 			InitializeComponent ();
 		}
 
-		async void MainList_ItemSelected (object sender, SelectedItemChangedEventArgs e)
+		async void OnItemSelected (object sender, SelectedItemChangedEventArgs e)
 		{
 			switch (e.SelectedItemIndex) {
 				case 0:
