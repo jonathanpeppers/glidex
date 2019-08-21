@@ -1,5 +1,4 @@
-﻿using System;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace Android.Glide.Sample
 {
@@ -8,21 +7,9 @@ namespace Android.Glide.Sample
 		public MainPage ()
 		{
 			InitializeComponent ();
-
-			MainList.ItemsSource = new []
-			{
-				"Grid Example",
-				"Edge Cases",
-				"ViewCells",
-				"ImageCells",
-				"Huge Images",
-				"Toggle Images",
-				"Toggle Images Material",
-				"Images Should Match",
-			};
 		}
 
-		async void MainList_ItemSelected (object sender, SelectedItemChangedEventArgs e)
+		async void OnItemSelected (object sender, SelectedItemChangedEventArgs e)
 		{
 			switch (e.SelectedItemIndex) {
 				case 0:
@@ -49,10 +36,13 @@ namespace Android.Glide.Sample
 				case 7:
 					await Navigation.PushAsync (new MatchPage ());
 					break;
+				case 8:
+					await Navigation.PushAsync (new ListViewOfDoom ());
+					break;
 				default:
 					break;
 			}
-			MainList.SelectedItem = null;
+			((ListView)sender).SelectedItem = null;
 		}
 	}
 }
