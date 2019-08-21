@@ -28,6 +28,12 @@ if (!string.IsNullOrEmpty(buildNumber))
 Task("Boots")
     .Does(async () =>
     {
+        Console.WriteLine ($"LocalApplicationData: {Environment.GetFolderPath (Environment.SpecialFolder.LocalApplicationData)}");
+        Console.WriteLine ($"CommonApplicationData: {Environment.GetFolderPath (Environment.SpecialFolder.CommonApplicationData)}");
+        Console.WriteLine ($"ProgramFilesX86: {Environment.GetFolderPath (Environment.SpecialFolder.ProgramFilesX86)}");
+        Console.WriteLine ($"ProgramFiles: {Environment.GetFolderPath (Environment.SpecialFolder.ProgramFiles)}");
+        Console.WriteLine ($"IntPtr.Size: {IntPtr.Size}");
+
         var platform = IsRunningOnWindows() ? "windows" : "macos";
         await Boots ($"https://aka.ms/xamarin-android-commercial-d16-3-{platform}");
     });
