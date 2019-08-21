@@ -4,7 +4,19 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Android.Glide.Sample.MainPage"
     Title="GlideX.Forms Sample">
-    <ListView x:Name="MainList" ItemSelected="MainList_ItemSelected">
+    <ListView ItemSelected=" ">
+        <ListView.ItemsSource>
+            <x:Array Type="{x:Type x:String}">
+                <x:String>Grid Example</x:String>
+                <x:String>Edge Cases</x:String>
+                <x:String>ViewCells</x:String>
+                <x:String>ImageCells</x:String>
+                <x:String>Huge Images</x:String>
+                <x:String>Toggle Images</x:String>
+                <x:String>Toggle Images Material</x:String>
+                <x:String>Images Should Match</x:String>
+            </x:Array>
+        </ListView.ItemsSource>
         <ListView.ItemTemplate>
             <DataTemplate>
                 <TextCell Text="{Binding}" />
