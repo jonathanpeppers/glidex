@@ -65,7 +65,7 @@ namespace Android.Glide
 				var handler = Forms.GlideHandler;
 				if (handler != null) {
 					Forms.Debug ("Calling into {0} of type `{1}`.", nameof (IGlideHandler), handler.GetType ());
-					 if (handler.Build (imageView, source, builder, token)) {
+					if (handler.Build (imageView, source, builder, token)) {
 						return;
 					}
 				}
@@ -120,6 +120,16 @@ namespace Android.Glide
 			//We need to call Clear for Glide to know this image is now unused
 			//https://bumptech.github.io/glide/doc/targets.html
 			request.Clear (imageView);
+		}
+
+		internal static void CancelGlide (this ImageView imageView)
+		{
+			if (!IsActivityAlive (imageView, null)) {
+				return;
+			}
+
+			RequestManager request = With (imageView.Context);
+			Clear (request, imageView);
 		}
 	}
 }

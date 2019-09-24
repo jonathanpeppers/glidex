@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Forms.cs" />
     <Compile Include="GlideExtensions.cs" />
+    <Compile Include="ImageRenderer.cs" />
     <Compile Include="ImageViewHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IGlideHandler.cs" />
