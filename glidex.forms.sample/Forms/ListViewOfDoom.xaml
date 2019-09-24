@@ -3,10 +3,12 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Android.Glide.Sample.ListViewOfDoom">
-    <ListView ItemsSource="{Binding}" CachingStrategy="RecycleElement">
+    <ListView ItemsSource="{Binding}" CachingStrategy="RecycleElement" RowHeight="200">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <ImageCell Text="Random URLs" ImageSource="{Binding}" />
+                <ViewCell>
+                    <Image Source="{Binding}" />
+                </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>
