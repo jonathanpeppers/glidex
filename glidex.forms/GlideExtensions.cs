@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace Android.Glide
 {
 	public static class GlideExtensions
 	{
+		static readonly ConcurrentDictionary<IntPtr, WeakReference<RequestManager>> requests = new ConcurrentDictionary<IntPtr, WeakReference<RequestManager>> ();
+
 		public static async Task LoadViaGlide (this ImageView imageView, ImageSource source, CancellationToken token)
 		{
 			try {
@@ -73,6 +76,7 @@ namespace Android.Glide
 				if (builder is null) {
 					Clear (request, imageView);
 				} else {
+					requests.AddOrUpdate (imageView.Handle, new WeakReference<RequestManager> (request), (k, v) => v);
 					imageView.Visibility = ViewStates.Visible;
 					builder.Into (imageView);
 				}
@@ -124,12 +128,13 @@ namespace Android.Glide
 
 		internal static void CancelGlide (this ImageView imageView)
 		{
-			if (!IsActivityAlive (imageView, null)) {
+			var handle = imageView.Handle;
+			if (handle == IntPtr.Zero) {
 				return;
 			}
-
-			RequestManager request = With (imageView.Context);
-			Clear (request, imageView);
+			if (requests.TryRemove (handle, out var reference) && reference.TryGetTarget (out RequestManager request)) {
+				Clear (request, imageView);
+			}
 		}
 	}
 }
