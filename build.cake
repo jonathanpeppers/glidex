@@ -1,4 +1,4 @@
-#addin nuget:?package=Cake.Boots&version=1.0.0.291
+#addin nuget:?package=Cake.Boots&version=1.0.1.386
 #load "helpers.cake"
 
 // Input args
@@ -29,7 +29,7 @@ Task("Boots")
     .Does(async () =>
     {
         var platform = IsRunningOnWindows() ? "windows" : "macos";
-        await Boots ($"https://aka.ms/xamarin-android-commercial-d16-3-{platform}");
+        await Boots ($"https://aka.ms/xamarin-android-commercial-d16-4-{platform}");
     });
 
 Task("Clean")
