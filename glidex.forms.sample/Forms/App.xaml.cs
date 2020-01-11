@@ -9,6 +9,9 @@ namespace Android.Glide.Sample
 			InitializeComponent();
 
 			MainPage = new NavigationPage (new MainPage ());
+
+			// Uncomment to test issues while exiting the app
+			//MainPage = new ToggleSourcePage ();
 		}
 	}
 }
