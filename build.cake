@@ -1,4 +1,4 @@
-#addin nuget:?package=Cake.Boots&version=1.0.0.291
+#addin nuget:?package=Cake.Boots&version=1.0.1.386
 #load "helpers.cake"
 
 // Input args
