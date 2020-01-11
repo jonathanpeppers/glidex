@@ -17,8 +17,10 @@ namespace Android.Glide
 		public static async Task LoadViaGlide (this ImageView imageView, ImageSource source, CancellationToken token)
 		{
 			try {
-				if (!IsActivityAlive (imageView, source))
+				if (!IsActivityAlive (imageView, source)) {
+					CancelGlide (imageView);
 					return;
+				}
 
 				RequestManager request = With (imageView.Context);
 				RequestBuilder builder = null;
@@ -54,8 +56,10 @@ namespace Android.Glide
 						using (var stream = await streamSource.Stream (token)) {
 							if (token.IsCancellationRequested || stream == null)
 								return;
-							if (!IsActivityAlive (imageView, source))
+							if (!IsActivityAlive (imageView, source)) {
+								CancelGlide (imageView);
 								return;
+							}
 							stream.CopyTo (memoryStream);
 							builder = request.Load (memoryStream.ToArray ());
 						}
@@ -112,6 +116,9 @@ namespace Android.Glide
 			return true;
 		}
 
+		/// <summary>
+		/// Cancels the Request and "clears" the ImageView
+		/// </summary>
 		static void Clear (RequestManager request, ImageView imageView)
 		{
 			imageView.Visibility = ViewStates.Gone;
@@ -124,12 +131,13 @@ namespace Android.Glide
 
 		internal static void CancelGlide (this ImageView imageView)
 		{
-			if (!IsActivityAlive (imageView, null)) {
+			if (imageView.Handle == IntPtr.Zero) {
 				return;
 			}
 
-			RequestManager request = With (imageView.Context);
-			Clear (request, imageView);
+			//NOTE: we may be doing a Cancel after the Activity has just exited
+			// To make this work we have to use the Application.Context
+			With (App.Application.Context).Clear (imageView);
 		}
 	}
 }
