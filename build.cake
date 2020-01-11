@@ -29,7 +29,7 @@ Task("Boots")
     .Does(async () =>
     {
         var platform = IsRunningOnWindows() ? "windows" : "macos";
-        await Boots ($"https://aka.ms/xamarin-android-commercial-d16-3-{platform}");
+        await Boots ($"https://aka.ms/xamarin-android-commercial-d16-4-{platform}");
     });
 
 Task("Clean")
