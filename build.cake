@@ -16,7 +16,7 @@ var dirs = new[]
 };
 string output = dirs[0];
 string sln = "./glidex.sln";
-string version = "2.0.1";
+string version = "2.1.0";
 string suffix = "";
 
 string buildNumber = Environment.GetEnvironmentVariable ("BUILD_BUILDNUMBER");
