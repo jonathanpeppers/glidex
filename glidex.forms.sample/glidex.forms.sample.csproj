@@ -92,6 +92,9 @@
     <Compile Include="Forms\ListViewOfDoom.xaml.cs">
       <DependentUpon>ListViewOfDoom.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Forms\CollectionViewOfDoom.xaml.cs">
+      <DependentUpon>CollectionViewOfDoom.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\icon.png" />
@@ -126,6 +129,10 @@
     <EmbeddedResource Include="embeddedpatch1.jpg" />
     <EmbeddedResource Include="back.png" />
     <EmbeddedResource Include="Forms\ListViewOfDoom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CollectionViewOfDoom.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

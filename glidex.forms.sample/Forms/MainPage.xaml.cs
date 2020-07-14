@@ -39,6 +39,9 @@ namespace Android.Glide.Sample
 				case 8:
 					await Navigation.PushAsync (new ListViewOfDoom ());
 					break;
+				case 9:
+					await Navigation.PushAsync (new CollectionViewOfDoom ());
+					break;
 				default:
 					break;
 			}
