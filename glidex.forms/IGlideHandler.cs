@@ -19,5 +19,6 @@ namespace Android.Glide
 		/// <param name="token">The CancellationToken if you need it</param>
 		/// <returns>True if the image was handled. Return false if you need the image to be cleared for you.</returns>
 		bool Build (ImageView imageView, ImageSource source, RequestBuilder builder, CancellationToken token);
+		void Build (ImageSource source, RequestBuilder builder, CancellationToken token);
 	}
 }

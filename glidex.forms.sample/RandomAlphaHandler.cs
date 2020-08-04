@@ -21,6 +21,11 @@ namespace Android.Glide.Sample
 			}
 		}
 
+		public void Build (ImageSource source, RequestBuilder builder, CancellationToken token)
+		{
+			
+		}
+
 		class MyTarget : SimpleTarget
 		{
 			static readonly Random rand = new Random();
