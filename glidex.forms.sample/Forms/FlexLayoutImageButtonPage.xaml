@@ -3,42 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Android.Glide.Sample.FlexLayoutImageButtonPage"
              Title="Flexlayout ImageButtons">
-  <ContentPage.Content>
-    <FlexLayout Direction="Column">
-      <FlexLayout Direction="Column" x:Name="flexButtonsView" FlexLayout.Grow="1">
-        <ImageButton FlexLayout.Order="1" FlexLayout.Grow="1"  Aspect="AspectFit" BackgroundColor="Transparent">
-          <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="CommonStates">
-              <VisualState x:Name="Normal">
-                <VisualState.Setters>
-                  <Setter Property="Source" Value="buttonnormal.png" />
-                </VisualState.Setters>
-              </VisualState>
-              <VisualState x:Name="Pressed">
-                <VisualState.Setters>
-                  <Setter Property="Source" Value="buttonpressed.png" />
-                </VisualState.Setters>
-              </VisualState>
-            </VisualStateGroup>
-          </VisualStateManager.VisualStateGroups>
-        </ImageButton>
-        <ImageButton FlexLayout.Order="2" FlexLayout.Grow="1" Aspect="AspectFit" BackgroundColor="Transparent">
-          <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup x:Name="CommonStates">
-              <VisualState x:Name="Normal">
-                <VisualState.Setters>
-                  <Setter Property="Source" Value="buttonnormal.png" />
-                </VisualState.Setters>
-              </VisualState>
-              <VisualState x:Name="Pressed">
-                <VisualState.Setters>
-                  <Setter Property="Source" Value="buttonpressed.png" />
-                </VisualState.Setters>
-              </VisualState>
-            </VisualStateGroup>
-          </VisualStateManager.VisualStateGroups>
-        </ImageButton>
-      </FlexLayout>
-    </FlexLayout>
-  </ContentPage.Content>
+  <FlexLayout Direction="Column" x:Name="flexButtonsView" FlexLayout.Grow="1">
+    <ImageButton FlexLayout.Order="1" FlexLayout.Grow="1" Aspect="AspectFit" BackgroundColor="Transparent">
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="Source" Value="buttonnormal.png" />
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="Source" Value="buttonpressed.png" />
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </ImageButton>
+    <ImageButton FlexLayout.Order="2" FlexLayout.Grow="1" Aspect="AspectFit" BackgroundColor="Transparent">
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="CommonStates">
+          <VisualState x:Name="Normal">
+            <VisualState.Setters>
+              <Setter Property="Source" Value="buttonnormal.png" />
+            </VisualState.Setters>
+          </VisualState>
+          <VisualState x:Name="Pressed">
+            <VisualState.Setters>
+              <Setter Property="Source" Value="buttonpressed.png" />
+            </VisualState.Setters>
+          </VisualState>
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </ImageButton>
+  </FlexLayout>
 </ContentPage>
