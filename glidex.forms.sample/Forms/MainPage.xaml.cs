@@ -42,6 +42,12 @@ namespace Android.Glide.Sample
 				case 9:
 					await Navigation.PushAsync (new CollectionViewOfDoom ());
 					break;
+				case 10:
+					await Navigation.PushAsync (new FlexLayoutImageButtonPage ());
+					break;
+				case 11:
+					await Navigation.PushAsync (new VisualStateManagerPage ());
+					break;
 				default:
 					break;
 			}

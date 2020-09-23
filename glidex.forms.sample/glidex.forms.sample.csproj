@@ -55,11 +55,17 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\VisualStateManagerPage.xaml.cs">
+      <DependentUpon>VisualStateManagerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Forms\EdgeCasesPage.xaml.cs">
       <DependentUpon>EdgeCasesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FlexLayoutImageButtonPage.xaml.cs">
+      <DependentUpon>FlexLayoutImageButtonPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\Images.cs" />
     <Compile Include="Forms\MainPage.xaml.cs">
@@ -168,6 +174,24 @@
       <Project>{dfb39f19-eec3-4ecb-888d-d84c3b4a9113}</Project>
       <Name>glidex.forms</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\buttonnormal.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\buttonpressed.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\VisualStateManagerPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FlexLayoutImageButtonPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
