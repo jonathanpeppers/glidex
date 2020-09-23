@@ -55,8 +55,8 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\CarouselViewPage.xaml.cs">
-      <DependentUpon>CarouselViewPage.xaml</DependentUpon>
+    <Compile Include="Forms\VisualStateManagerPage.xaml.cs">
+      <DependentUpon>VisualStateManagerPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Forms\EdgeCasesPage.xaml.cs">
       <DependentUpon>EdgeCasesPage.xaml</DependentUpon>
@@ -186,7 +186,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\CarouselViewPage.xaml">
+    <EmbeddedResource Include="Forms\VisualStateManagerPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FlexLayoutImageButtonPage.xaml">

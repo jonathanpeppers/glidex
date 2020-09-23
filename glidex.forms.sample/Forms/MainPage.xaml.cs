@@ -46,7 +46,7 @@ namespace Android.Glide.Sample
 					await Navigation.PushAsync (new FlexLayoutImageButtonPage ());
 					break;
 				case 11:
-					await Navigation.PushAsync (new CarouselViewPage ());
+					await Navigation.PushAsync (new VisualStateManagerPage ());
 					break;
 				default:
 					break;

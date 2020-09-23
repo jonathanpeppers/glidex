@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Android.Glide.Sample
 {
 	[XamlCompilation (XamlCompilationOptions.Compile)]
-	public partial class CarouselViewPage : ContentPage
+	public partial class VisualStateManagerPage : ContentPage
 	{
-		public CarouselViewPage ()
+		public VisualStateManagerPage ()
 		{
 			InitializeComponent ();
 		}

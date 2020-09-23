@@ -18,7 +18,7 @@
                 <x:String>ListView Of Doom</x:String>
                 <x:String>CollectionView Of Doom</x:String>
                 <x:String>FlexLayout Image Buttons</x:String>
-                <x:String>CarouselView Image Buttons</x:String>
+                <x:String>VisualStateManager</x:String>
             </x:Array>
         </ListView.ItemsSource>
     </ListView>
