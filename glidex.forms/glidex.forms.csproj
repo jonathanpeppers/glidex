@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" ExcludeAssets="build" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1451" ExcludeAssets="build" />
     <PackageReference Include="Xamarin.Android.Glide" Version="4.11.0" />
   </ItemGroup>
   <ItemGroup>
