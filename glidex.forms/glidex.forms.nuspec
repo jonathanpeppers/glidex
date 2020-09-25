@@ -13,7 +13,7 @@
         <projectUrl>https://github.com/jonathanpeppers/glidex/</projectUrl>
         <repository type="git" url="https://github.com/jonathanpeppers/glidex"/>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <copyright>Jonathan Peppers 2019</copyright>
+        <copyright>Jonathan Peppers 2020</copyright>
         <releaseNotes></releaseNotes>
         <tags>Xamarin, Xamarin.Forms, Android, Glide, Bitmap, Images</tags>
         <dependencies>
