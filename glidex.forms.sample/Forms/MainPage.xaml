@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Android.Glide.Sample.MainPage"
-    Title="GlideX.Forms Sample">
+    Title="GlideX.Forms Sample"
+    NavigationPage.TitleIconImageSource="https://api.nuget.org/v3-flatcontainer/glidex.forms/2.1.0.470/icon">
   <ListView ItemsSource="{Binding}" ItemSelected="OnItemSelected" />
 </ContentPage>

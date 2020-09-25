@@ -3,6 +3,9 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Android.App;
+using Android.Content;
+using Android.Graphics;
+using Android.Graphics.Drawables;
 using Android.Views;
 using Android.Widget;
 using Bumptech.Glide;
@@ -33,36 +36,13 @@ namespace Android.Glide
 
 				switch (source) {
 					case FileImageSource fileSource:
-						var fileName = fileSource.File;
-						var drawable = ResourceManager.GetDrawableByName (fileName);
-						if (drawable != 0) {
-							Forms.Debug ("Loading `{0}` as an Android resource", fileName);
-							builder = request.Load (drawable);
-						} else {
-							Forms.Debug ("Loading `{0}` from disk", fileName);
-							builder = request.Load (fileName);
-						}
+						builder = HandleFileImageSource (request, fileSource);
 						break;
-
 					case UriImageSource uriSource:
-						var url = uriSource.Uri.OriginalString;
-						Forms.Debug ("Loading `{0}` as a web URL", url);
-						builder = request.Load (url);
+						builder = HandleUriImageSource (request, uriSource);
 						break;
-
 					case StreamImageSource streamSource:
-						Forms.Debug ("Loading `{0}` as a byte[]. Consider using `AndroidResource` instead, as it would be more performant", nameof (StreamImageSource));
-						using (var memoryStream = new MemoryStream ())
-						using (var stream = await streamSource.Stream (token)) {
-							if (token.IsCancellationRequested || stream == null)
-								return;
-							if (!IsActivityAlive (imageView, source)) {
-								CancelGlide (imageView);
-								return;
-							}
-							await stream.CopyToAsync (memoryStream, token);
-							builder = request.Load (memoryStream.ToArray ());
-						}
+						builder = await HandleStreamImageSource (request, streamSource, token, () => !IsActivityAlive (imageView, source));
 						break;
 				}
 
@@ -87,8 +67,89 @@ namespace Android.Glide
 		}
 
 		/// <summary>
-		/// NOTE: see https://github.com/bumptech/glide/issues/1484#issuecomment-365625087
+		/// Should only be used internally for IImageSourceHandler calls
 		/// </summary>
+		internal static async Task<Bitmap> LoadViaGlide (this ImageSource source, Context context, CancellationToken token)
+		{
+			try {
+				if (source is null) {
+					Forms.Debug ("`{0}` is null", nameof (ImageSource));
+					return null;
+				}
+				if (!IsActivityAlive (context, source))
+					return null;
+
+				RequestManager request = With (context);
+				RequestBuilder builder = null;
+
+				switch (source) {
+					case FileImageSource fileSource:
+						builder = HandleFileImageSource (request, fileSource);
+						break;
+					case UriImageSource uriSource:
+						builder = HandleUriImageSource (request, uriSource);
+						break;
+					case StreamImageSource streamSource:
+						builder = await HandleStreamImageSource (request, streamSource, token, () => !IsActivityAlive (context, source));
+						break;
+				}
+
+				var handler = Forms.GlideHandler;
+				if (handler != null) {
+					Forms.Debug ("Calling into {0} of type `{1}`.", nameof (IGlideHandler), handler.GetType ());
+					handler.Build (source, ref builder, token);
+				}
+
+				if (builder is null)
+					return null;
+				var future = builder.Submit ();
+				var result = await Task.Run (() => future.Get (), token);
+				if (result is BitmapDrawable drawable)
+					return drawable.Bitmap;
+			} catch (Exception exc) {
+				//Since developers can't catch this themselves, I think we should log it and silently fail
+				Forms.Warn ("Unexpected exception in glidex: {0}", exc);
+			}
+			return null;
+		}
+
+		static RequestBuilder HandleFileImageSource (RequestManager request, FileImageSource source)
+		{
+			RequestBuilder builder;
+			var fileName = source.File;
+			var drawable = ResourceManager.GetDrawableByName (fileName);
+			if (drawable != 0) {
+				Forms.Debug ("Loading `{0}` as an Android resource", fileName);
+				builder = request.Load (drawable);
+			} else {
+				Forms.Debug ("Loading `{0}` from disk", fileName);
+				builder = request.Load (fileName);
+			}
+			return builder;
+		}
+
+		static RequestBuilder HandleUriImageSource (RequestManager request, UriImageSource source)
+		{
+			var url = source.Uri.OriginalString;
+			Forms.Debug ("Loading `{0}` as a web URL", url);
+			return request.Load (url);
+		}
+
+		static async Task<RequestBuilder> HandleStreamImageSource (RequestManager request, StreamImageSource source, CancellationToken token, Func<bool> cancelled)
+		{
+			Forms.Debug ("Loading `{0}` as a byte[]. Consider using `AndroidResource` instead, as it would be more performant", nameof (StreamImageSource));
+			using var memoryStream = new MemoryStream ();
+			using var stream = await source.Stream (token);
+			if (token.IsCancellationRequested || cancelled ())
+				return null;
+			if (stream is null)
+				return null;
+			await stream.CopyToAsync (memoryStream, token);
+			if (token.IsCancellationRequested || cancelled ())
+				return null;
+			return request.AsBitmap ().Load (memoryStream.ToArray ());
+		}
+
 		static bool IsActivityAlive (ImageView imageView, ImageSource source)
 		{
 			// The imageView.Handle could be IntPtr.Zero? Meaning we somehow have a reference to a disposed ImageView...
@@ -98,8 +159,16 @@ namespace Android.Glide
 				return false;
 			}
 
+			return IsActivityAlive (imageView.Context, source);
+		}
+
+		/// <summary>
+		/// NOTE: see https://github.com/bumptech/glide/issues/1484#issuecomment-365625087
+		/// </summary>
+		static bool IsActivityAlive (Context context, ImageSource source)
+		{
 			//NOTE: in some cases ContextThemeWrapper is Context
-			var activity = imageView.Context as Activity ?? Forms.Activity;
+			var activity = context as Activity ?? Forms.Activity;
 			if (activity != null) {
 				if (activity.IsFinishing) {
 					Forms.Warn ("Activity of type `{0}` is finishing, aborting image load for `{1}`.", activity.GetType ().FullName, source);
@@ -110,7 +179,7 @@ namespace Android.Glide
 					return false;
 				}
 			} else {
-				Forms.Warn ("Context `{0}` is not an Android.App.Activity and could not use Android.Glide.Forms.Activity, aborting image load for `{1}`.", imageView.Context, source);
+				Forms.Warn ("Context `{0}` is not an Android.App.Activity and could not use Android.Glide.Forms.Activity, aborting image load for `{1}`.", context, source);
 				return false;
 			}
 			return true;
