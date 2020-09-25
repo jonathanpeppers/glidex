@@ -60,7 +60,7 @@ namespace Android.Glide
 								CancelGlide (imageView);
 								return;
 							}
-							stream.CopyTo (memoryStream);
+							await stream.CopyToAsync (memoryStream, token);
 							builder = request.Load (memoryStream.ToArray ());
 						}
 						break;
