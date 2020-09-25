@@ -3,8 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:sample="clr-namespace:Android.Glide.Sample"
-    x:Class="Android.Glide.Sample.GridPage"
-    Title="Grid Example">
+    x:Class="Android.Glide.Sample.GridPage">
     <ScrollView Padding="0">
         <Grid x:Name="_grid" ColumnSpacing="0" RowSpacing="0">
             <Grid.ColumnDefinitions>
