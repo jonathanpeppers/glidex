@@ -1,4 +1,4 @@
-#addin nuget:?package=Cake.Boots&version=1.0.2.421
+#addin nuget:?package=Cake.Boots&version=1.0.2.482
 #load "helpers.cake"
 
 // Input args
@@ -28,10 +28,6 @@ if (!string.IsNullOrEmpty(buildNumber))
 Task("Boots")
     .Does(async () =>
     {
-        if (!IsRunningOnWindows ()) {
-            await Boots (Product.Mono,       ReleaseChannel.Stable);
-            await Boots (Product.XamariniOS, ReleaseChannel.Preview);
-        }
         await Boots (Product.XamarinAndroid, ReleaseChannel.Preview);
     });
 
@@ -71,7 +67,7 @@ Task("NuGet-Push")
 Task("Default")
     .IsDependentOn("NuGet-Package");
 
-Task("AppVeyor")
+Task("CI")
     .IsDependentOn("Boots")
     .IsDependentOn("NuGet-Package");
 
