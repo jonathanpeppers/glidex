@@ -67,7 +67,7 @@ Task("NuGet-Push")
 Task("Default")
     .IsDependentOn("NuGet-Package");
 
-Task("AppVeyor")
+Task("CI")
     .IsDependentOn("Boots")
     .IsDependentOn("NuGet-Package");
 
