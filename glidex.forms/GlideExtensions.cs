@@ -37,7 +37,7 @@ namespace Android.Glide
 						var drawable = ResourceManager.GetDrawableByName (fileName);
 						if (drawable != 0) {
 							Forms.Debug ("Loading `{0}` as an Android resource", fileName);
-							builder = request.Load (drawable);
+							builder = request.Load (drawable).Placeholder (drawable);
 						} else {
 							Forms.Debug ("Loading `{0}` from disk", fileName);
 							builder = request.Load (fileName);
