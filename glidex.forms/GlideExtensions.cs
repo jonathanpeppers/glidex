@@ -1,4 +1,5 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace Android.Glide
 				}
 
 				RequestManager request = With (imageView.Context);
-				RequestBuilder builder = null;
+				RequestBuilder? builder = null;
 
 				if (source is null) {
 					Forms.Debug ("`{0}` is null, clearing image", nameof (ImageSource));
@@ -69,7 +70,7 @@ namespace Android.Glide
 		/// <summary>
 		/// Should only be used internally for IImageSourceHandler calls
 		/// </summary>
-		internal static async Task<Bitmap> LoadViaGlide (this ImageSource source, Context context, CancellationToken token)
+		internal static async Task<Bitmap?> LoadViaGlide (this ImageSource source, Context context, CancellationToken token)
 		{
 			try {
 				if (source is null) {
@@ -80,7 +81,7 @@ namespace Android.Glide
 					return null;
 
 				RequestManager request = With (context);
-				RequestBuilder builder = null;
+				RequestBuilder? builder = null;
 
 				switch (source) {
 					case FileImageSource fileSource:
@@ -135,7 +136,7 @@ namespace Android.Glide
 			return request.Load (url);
 		}
 
-		static async Task<RequestBuilder> HandleStreamImageSource (RequestManager request, StreamImageSource source, CancellationToken token, Func<bool> cancelled)
+		static async Task<RequestBuilder?> HandleStreamImageSource (RequestManager request, StreamImageSource source, CancellationToken token, Func<bool> cancelled)
 		{
 			Forms.Debug ("Loading `{0}` as a byte[]. Consider using `AndroidResource` instead, as it would be more performant", nameof (StreamImageSource));
 			using var memoryStream = new MemoryStream ();
@@ -165,7 +166,7 @@ namespace Android.Glide
 		/// <summary>
 		/// NOTE: see https://github.com/bumptech/glide/issues/1484#issuecomment-365625087
 		/// </summary>
-		static bool IsActivityAlive (Context context, ImageSource source)
+		static bool IsActivityAlive (Context? context, ImageSource source)
 		{
 			//NOTE: in some cases ContextThemeWrapper is Context
 			var activity = context as Activity ?? Forms.Activity;
@@ -178,8 +179,11 @@ namespace Android.Glide
 					Forms.Warn ("Activity of type `{0}` is destroyed, aborting image load for `{1}`.", activity.GetType ().FullName, source);
 					return false;
 				}
-			} else {
+			} else if (context != null) {
 				Forms.Warn ("Context `{0}` is not an Android.App.Activity and could not use Android.Glide.Forms.Activity, aborting image load for `{1}`.", context, source);
+				return false;
+			} else {
+				Forms.Warn ("Context is null and could not use Android.Glide.Forms.Activity, aborting image load for `{0}`.", source);
 				return false;
 			}
 			return true;
