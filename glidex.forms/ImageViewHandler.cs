@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿#nullable enable
+using System.Threading;
 using System.Threading.Tasks;
 using Android.Content;
 using Android.Graphics;
@@ -27,7 +28,7 @@ namespace Android.Glide
 			await imageView.LoadViaGlide (source, token);
 		}
 
-		public async Task<Bitmap> LoadImageAsync (ImageSource source, Context context, CancellationToken token = default)
+		public async Task<Bitmap?> LoadImageAsync (ImageSource source, Context context, CancellationToken token = default)
 		{
 			Forms.Debug ("IImageSourceHandler of type `{0}`, `{1}` called.", GetType (), nameof (LoadImageAsync));
 			return await source.LoadViaGlide (context, token);
