@@ -9,7 +9,7 @@ namespace Android.Glide.Sample
 	{
 		static readonly Random random = new Random ();
 		static readonly string tempDir = Path.Combine (Path.GetTempPath (), "glide.forms.sample");
-		static readonly string tempPath = Path.Combine (tempDir, "temp.jpg");
+		static readonly string tempPath = Path.Combine (tempDir, "patch1.jpg");
 		const int MaxImages = 12;
 
 		public static IEnumerable<ImageSource> RandomSources ()
