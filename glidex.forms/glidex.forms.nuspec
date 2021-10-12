@@ -18,8 +18,8 @@
         <tags>Xamarin, Xamarin.Forms, Android, Glide, Bitmap, Images</tags>
         <dependencies>
             <group targetFramework="MonoAndroid10.0">
-                <dependency id="Xamarin.Android.Glide" version="4.11.0" />
-                <dependency id="Xamarin.Forms" version="4.5.0.356" />
+                <dependency id="Xamarin.Android.Glide" version="4.12.0.2" />
+                <dependency id="Xamarin.Forms" version="5.0.0.1874" />
             </group>
         </dependencies>
     </metadata>
