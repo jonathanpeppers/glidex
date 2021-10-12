@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Android.Glide.Sample
@@ -63,6 +64,16 @@ namespace Android.Glide.Sample
 					return ImageSource.FromFile ("back.png");
 				default:
 					throw new NotImplementedException ($"Whoops {x} not implemented!");
+			}
+		}
+
+		public static IEnumerable<ImageSource> GetPicsumImages (int count)
+		{
+			var width = (int) (DeviceDisplay.MainDisplayInfo.Width / DeviceDisplay.MainDisplayInfo.Density);
+			var url = $"https://picsum.photos/{width}/200";
+
+			for (int i = 0; i < count; i++) {
+				yield return ImageSource.FromUri (new Uri ($"{url}?{random.Next ()}"));
 			}
 		}
 	}
