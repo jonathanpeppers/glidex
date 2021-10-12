@@ -25,7 +25,7 @@ Learn more on [this episode of the Xamarin Show](https://youtu.be/IYF2ChHTTWc):
 If you have a "classic" Xamarin.Android app that is not Xamarin.Forms, it could be useful to use the [Xamarin.Android.Glide][xa_glide] NuGet package. If you want to improve the Xamarin binding for Glide, contribute to it on [Github][xa_glide_github]!
 
 [xa_glide]: https://www.nuget.org/packages/Xamarin.Android.Glide/
-[xa_glide_github]: https://github.com/xamarin/XamarinComponents/tree/master/Android/Glide
+[xa_glide_github]: https://github.com/xamarin/XamarinComponents/tree/main/Android/Glide
 
 # How do I use glidex.forms?
 
@@ -48,7 +48,7 @@ Android.Glide.Forms.Init (this, debug: true);
 ```
 glidex.forms will print out log messages in your device log as to what is happening under the hood.
 
-If you want to customize how Glide is used in your app, currently your option is to implement your own `IImageViewHandler`. See the [GlideExtensions](https://github.com/jonathanpeppers/glidex/blob/master/glidex.forms/GlideExtensions.cs) class for details.
+If you want to customize how Glide is used in your app, currently your option is to implement your own `IImageViewHandler`. See the [GlideExtensions](https://github.com/jonathanpeppers/glidex/blob/main/glidex.forms/GlideExtensions.cs) class for details.
 
 # Comparing Performance
 

@@ -3,7 +3,7 @@
 name: $(BuildID)
 
 trigger:
-- master
+- main
 
 jobs:
 - job: windows

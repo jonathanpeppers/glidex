@@ -4,7 +4,7 @@ build_script:
 - ps: .\build.ps1 -t AppVeyor
 branches:
   only:
-    - master
+    - main
 artifacts:
 - path: build
   name: glidex
