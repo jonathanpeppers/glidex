@@ -118,7 +118,7 @@ namespace Android.Glide
 		{
 			RequestBuilder builder;
 			var fileName = source.File;
-			var drawable = File.Exists(fileName) ? 0 : ResourceManager.GetDrawableByName(fileName);
+			var drawable = File.Exists (fileName) ? 0 : ResourceManager.GetDrawableByName (fileName);
 			if (drawable != 0) {
 				Forms.Debug ("Loading `{0}` as an Android resource", fileName);
 				builder = request.Load (drawable);

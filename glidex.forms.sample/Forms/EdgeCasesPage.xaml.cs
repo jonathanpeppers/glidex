@@ -11,6 +11,11 @@ namespace Android.Glide.Sample
 
 			_stack.Children.Add (new Image {
 				HeightRequest = 50,
+				// Named the same as an AndroidResource
+				Source = ImageSource.FromFile (Images.CopyToTempFile ("assetpatch2.jpg", "patch1.jpg")),
+			});
+			_stack.Children.Add (new Image {
+				HeightRequest = 50,
 				Source = Images.RandomSource (),
 			});
 			_stack.Children.Add (new ImageButton {

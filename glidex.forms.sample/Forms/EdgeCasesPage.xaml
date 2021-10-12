@@ -6,5 +6,6 @@
     x:Class="Android.Glide.Sample.EdgeCasesPage">
     <StackLayout x:Name="_stack" Padding="5">
         <Label Text="This is just a bunch of stuff that shouldn't crash the app." />
+        <Label Text="Four images should load below." />
     </StackLayout>
 </sample:ProfilerPage>
