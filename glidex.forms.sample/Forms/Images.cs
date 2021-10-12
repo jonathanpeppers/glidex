@@ -10,12 +10,10 @@ namespace Android.Glide.Sample
 	{
 		static readonly Random random = new Random ();
 		static readonly string tempDir = Path.Combine (Path.GetTempPath (), "glide.forms.sample");
-		static readonly string tempPath = Path.Combine (tempDir, "patch1.jpg");
 		const int MaxImages = 12;
 
 		public static IEnumerable<ImageSource> RandomSources ()
 		{
-			var random = new Random ();
 			for (int i = 0; i < 100; i++) {
 				yield return RandomSource ();
 			}
@@ -44,14 +42,7 @@ namespace Android.Glide.Sample
 					return ImageSource.FromFile ("patch" + (x - 2));
 				//File path
 				case 7:
-					if (!File.Exists(tempPath)) {
-						Directory.CreateDirectory (tempDir);
-						using (var assetStream = Android.App.Application.Context.Assets.Open("assetpatch1.jpg"))
-						using (var fileStream = File.Create (tempPath)) {
-							assetStream.CopyTo (fileStream);
-						}
-					}
-					return ImageSource.FromFile (tempPath);
+					return ImageSource.FromFile (CopyToTempFile ("assetpatch1.jpg"));
 				//Stream
 				case 8:
 					return ImageSource.FromStream (() => Android.App.Application.Context.Assets.Open ("assetpatch2.jpg"));
@@ -65,6 +56,23 @@ namespace Android.Glide.Sample
 				default:
 					throw new NotImplementedException ($"Whoops {x} not implemented!");
 			}
+		}
+
+		/// <summary>
+		/// Copies an AndroidAsset to a temp file and returns the full path to it
+		/// </summary>
+		public static string CopyToTempFile (string assetName, string destinationName = "")
+		{
+			if (string.IsNullOrEmpty (destinationName))
+				destinationName = assetName;
+			string tempPath = Path.Combine (tempDir, destinationName);
+			if (!File.Exists (tempPath)) {
+				Directory.CreateDirectory (tempDir);
+				using var assetStream = Android.App.Application.Context.Assets.Open (assetName);
+				using var fileStream = File.Create (tempPath);
+				assetStream.CopyTo (fileStream);
+			}
+			return tempPath;
 		}
 
 		public static IEnumerable<ImageSource> GetPicsumImages (int count)
