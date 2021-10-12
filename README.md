@@ -27,8 +27,6 @@ If you have a "classic" Xamarin.Android app that is not Xamarin.Forms, it could 
 [xa_glide]: https://www.nuget.org/packages/Xamarin.Android.Glide/
 [xa_glide_github]: https://github.com/xamarin/XamarinComponents/tree/master/Android/Glide
 
-_glidex.forms is currently using the 4.9.0 release of Xamarin.Android.Glide_
-
 # How do I use glidex.forms?
 
 To set this library up in your existing project, merely:
