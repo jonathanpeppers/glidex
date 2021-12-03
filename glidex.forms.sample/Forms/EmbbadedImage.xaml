@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestingApp.EmbbadedImage"
+             xmlns:local="clr-namespace:TestingApp">
+    <ContentPage.Content>
+        <StackLayout>
+            <Image Source="{local:ImageResource WorkingWithImages.beach.png}"></Image>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
