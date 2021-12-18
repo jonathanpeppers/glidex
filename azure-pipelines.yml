@@ -8,7 +8,7 @@ trigger:
 jobs:
 - job: windows
   pool:
-    vmImage: windows-latest
+    vmImage: windows-2022
     demands:
     - msbuild
   steps:
