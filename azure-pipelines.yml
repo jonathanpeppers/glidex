@@ -12,7 +12,9 @@ jobs:
     demands:
     - msbuild
   steps:
-  - powershell: .\build.ps1 -t CI
+  - powershell: |
+      dotnet tool restore
+      dotnet cake --target=CI
     displayName: build
   - task: PublishPipelineArtifact@0
     displayName: artifacts
