@@ -8,11 +8,13 @@ trigger:
 jobs:
 - job: windows
   pool:
-    vmImage: windows-latest
+    vmImage: windows-2022
     demands:
     - msbuild
   steps:
-  - powershell: .\build.ps1 -t CI
+  - powershell: |
+      dotnet tool restore
+      dotnet cake --target=CI
     displayName: build
   - task: PublishPipelineArtifact@0
     displayName: artifacts
