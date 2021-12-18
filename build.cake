@@ -1,5 +1,3 @@
-// TODO: workaround for Cake.Boots update
-#addin nuget:?package=Microsoft.Bcl.AsyncInterfaces&version=6.0.0
 #addin nuget:?package=Cake.Boots&version=1.1.0.682-preview1
 #load "helpers.cake"
 
